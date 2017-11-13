@@ -47,6 +47,7 @@ def send_message(recipient_id, message_text):
     }),
     headers={'Content-type': 'application/json'})
   if r.status_code != requests.codes.ok:
+    print("error")
     print(r.text)
 
 if __name__ == '__main__':
