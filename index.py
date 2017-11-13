@@ -1,4 +1,5 @@
 from flask import Flask, request
+from difflib import SequenceMatcher
 import json
 import requests
 
@@ -27,7 +28,6 @@ def handle_verification():
 def handle_messages():
   print('Handling Messages')
   payload = request.get_data()
-  print(messaging_events)
   for sender, message in messaging_events(payload):
     print(message.decode('unicode_escape'))
     send_message(PAT, sender, message)
@@ -47,16 +47,22 @@ def messaging_events(payload):
 
 
 def send_message(token, recipient, text):
-  """Send the message text to recipient with id recipient.
-  """
+  message = text.decode('unicode_escape')
+  message_matching(message)
+  if(message )
 
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": token},
     data=json.dumps({
       "recipient": {"id": recipient},
-      "message": {"text": text.decode('unicode_escape')}
+      "message": {"text": message}
     }),
     headers={'Content-type': 'application/json'})
 
+
+def message_matching(message):
+  if(message.SequenceMatcher('급식', message).ratio() > 0.5):
+    print(message)
+    
 if __name__ == '__main__':
   app.run()
