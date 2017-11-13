@@ -39,6 +39,7 @@ def handle_messages():
               if messaging_event.get("optin"):  # optin confirmation
                   pass
               if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
+                  print("postback")
                   pass
   return "ok"
 def messaging_events(payload):
