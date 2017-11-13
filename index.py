@@ -86,9 +86,10 @@ def send_buttton(sender_id, attachment):
   data = json.dumps({
     "recipient": {"id": sender_id},
     "message": {
-      "attachment": attachment
+      "attachment": {attachment}
     }
   })
+  print(data)
   send_message(data)
   
 def send_text(sender_id, message_text):
