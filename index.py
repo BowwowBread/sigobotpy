@@ -21,37 +21,22 @@ def handle_verification():
     print('Verification failed!')
     return 'Error, wrong validation token'
 
-# @app.route('/webhook', methods=['POST'])
-# def handle_messages():
-#   data = request.get_json()
-#   if data["object"] == "page":
-#       for entry in data["entry"]:
-#           for messaging_event in entry["messaging"]:
-#               print(messaging_event)
-#               if messaging_event.get("message"): 
-#                   sender_id = messaging_event["sender"]["id"]   
-#                   recipient_id = messaging_event["recipient"]["id"] 
-#                   message_text = messaging_event["message"]["text"]  
-#                   send_message(access_token, sender_id, message_text)
-#               if messaging_event.get("postback"):
-#                   print("postback")
-#                   pass
-#   return "ok"
-
 @app.route('/webhook', methods=['POST'])
 def handle_messages():
-  payload = request.get_data()
-  for sender, message in messaging_events(payload):
-    send_message(access_token, sender, message)
+  data = request.get_json()
+  if data["object"] == "page":
+      for entry in data["entry"]:
+          for messaging_event in entry["messaging"]:
+              print(messaging_event)
+              if messaging_event.get("message"): 
+                  sender_id = messaging_event["sender"]["id"]   
+                  recipient_id = messaging_event["recipient"]["id"] 
+                  message_text = messaging_event["message"]["text"]  
+                  send_message(access_token, sender_id, message_text)
+              if messaging_event.get("postback"):
+                  print("postback")
+                  pass
   return "ok"
-def messaging_events(payload):
-  data = json.loads(payload)
-  messaging_events = data["entry"][0]["messaging"]
-  for event in messaging_events:
-    if "message" in event and "text" in event["message"]:
-      yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
-    else:
-      yield event["sender"]["id"], "I can't echo this"
 
 def send_message(token, recipient, text):
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
