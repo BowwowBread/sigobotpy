@@ -48,7 +48,7 @@ def messaging_events(payload):
 
 
 def send_message(token, recipient, text):
-  if(message):
+  if(text):
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
       params={"access_token": token},
       data=json.dumps({
