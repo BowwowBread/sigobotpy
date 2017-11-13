@@ -32,17 +32,17 @@ def handle_messages():
                   sender_id = messaging_event["sender"]["id"]   
                   recipient_id = messaging_event["recipient"]["id"] 
                   message_text = messaging_event["message"]["text"]  
-                  send_message(sender_id, message_text)
+                  send_message(recipient_id, message_text)
               if messaging_event.get("postback"):
                   print("postback")
                   pass
   return "ok"
 
-def send_message(sender_id, message_text):
+def send_message(recipient_id, message_text):
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": access_token},
     data=json.dumps({
-      "recipient": {"id": sender_id},
+      "recipient": {"id": recipient_id},
       "message": {"text": message_text}
     }),
     headers={'Content-type': 'application/json'})
