@@ -28,7 +28,6 @@ def handle_verification():
 def handle_messages():
   print('Handling Messages')
   payload = request.get_data()
-  print(payload)
   for sender, message in messaging_events(payload):
     print(message.decode('unicode_escape'))
     send_message(PAT, sender, message)
@@ -40,8 +39,8 @@ def messaging_events(payload):
   """
   data = json.loads(payload)
   messaging_events = data["entry"][0]["messaging"]
-  print(messaging_events)
   for event in messaging_events:
+    print(event)
     if "message" in event and "text" in event["message"]:
       yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
     else:
