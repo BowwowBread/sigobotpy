@@ -48,16 +48,15 @@ def messaging_events(payload):
 
 def send_message(token, recipient, text):
   message = text.decode('unicode_escape')
-  message_matching(message)
-  if(message )
-
-  r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-    params={"access_token": token},
-    data=json.dumps({
-      "recipient": {"id": recipient},
-      "message": {"text": message}
-    }),
-    headers={'Content-type': 'application/json'})
+  print(message_matching(message))
+  if(message):
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+      params={"access_token": token},
+      data=json.dumps({
+        "recipient": {"id": recipient},
+        "message": {"text": message}
+      }),
+      headers={'Content-type': 'application/json'})
 
 
 def message_matching(message):
