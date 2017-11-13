@@ -46,33 +46,32 @@ def payload_match(sender_id, payload):
     send_text(sender_id, "안녕하세요 SIGO 봇입니다. 메뉴에서 도움말 버튼을 누르시면 사용법을 확인하실 수 있습니다.")
   elif(payload == "CAFETERIA"):
     attachment = json.dumps({
-      {"type": "template",
-        "payload": {
-          "template_type": "button",
-          "text": "날짜를 선택해주세요",
-          "buttons": [
-            {
-              "type": "postback",
-              "title": "오늘 급식",
-              "payload": "TODAY_CAFETERIA"
-            },
-            {
-              "type": "postback",
-              "title": "내일 급식",
-              "payload": "TOMORROW_CAFETERIA"
-            },
-            {
-              "type": "postback",
-              "title": "이번 주 급식",
-              "payload": "WEEK_CAFETERIA"
-            },
-            {
-              "type": "postback",
-              "title": "다음 주 급식",
-              "payload": "NEXTWEEK_CAFETERIA"
-            },
-          ]
-        }
+      "type": "template",
+      "payload": {
+        "template_type": "button",
+        "text": "날짜를 선택해주세요",
+        "buttons": [
+          {
+            "type": "postback",
+            "title": "오늘 급식",
+            "payload": "TODAY_CAFETERIA"
+          },
+          {
+            "type": "postback",
+            "title": "내일 급식",
+            "payload": "TOMORROW_CAFETERIA"
+          },
+          {
+            "type": "postback",
+            "title": "이번 주 급식",
+            "payload": "WEEK_CAFETERIA"
+          },
+          {
+            "type": "postback",
+            "title": "다음 주 급식",
+            "payload": "NEXTWEEK_CAFETERIA"
+          },
+        ]
       }
     })
     send_buttton(sender_id, attachment)
@@ -87,7 +86,7 @@ def send_buttton(sender_id, attachment):
   data = json.dumps({
     "recipient": {"id": sender_id},
     "message": {
-      "attachment": attachment
+      "attachment": {attachment}
     }
   })
   print(data)
@@ -99,7 +98,6 @@ def send_text(sender_id, message_text):
     "message": {"text": message_text}
   })
   send_message(data)
-
 def send_message(data):
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": access_token},
