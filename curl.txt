@@ -5,10 +5,10 @@ curl -X POST -H "Content-Type: application/json" -d '{
   "thread_state":"new_thread",
   "call_to_actions":[
     {
-      "payload":"USER_DEFINED_PAYLOAD"
+      "payload":"STARTED"
     }
   ]
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAPf0iePgkrD2GPNmCz0CMO59Cqyl6UZCR2VUZCOtU06rE6FphSwv4xrrenP4NF1eIuQQUQalH6naTr4fiXnFd0rN6HTgb03VpZAhYQs2MAQeGqZBqCskOZA7uTeHwzLsJGmmaqQVco8MmmbCJu1N9I2rNtZAEEZCAZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD"
 
 
 #greeting
@@ -16,9 +16,9 @@ curl -X POST -H "Content-Type: application/json" -d '{
 curl -X POST -H "Content-Type: application/json" -d '{
                        "setting_type":"greeting",
                        "greeting":{
-                                     "text":"Hello {{user_first_name}}!"
+                                     "text":"안녕하세요 {{user_first_name}}님!"
                              }
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAPf0iePgkrD2GPNmCz0CMO59Cqyl6UZCR2VUZCOtU06rE6FphSwv4xrrenP4NF1eIuQQUQalH6naTr4fiXnFd0rN6HTgb03VpZAhYQs2MAQeGqZBqCskOZA7uTeHwzLsJGmmaqQVco8MmmbCJu1N9I2rNtZAEEZCAZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD"
 #button
 
 curl -X POST -H "Content-Type: application/json" -d'{
@@ -28,17 +28,17 @@ curl -X POST -H "Content-Type: application/json" -d'{
     {
       "type":"postback",
       "title":"급식",
-      "payload":"CAFETERIA_PAYLOAD"
+      "payload":"CAFETERIA"
     },
     {
       "type":"postback",
       "title":"일정",
-      "payload":"SCHEDULE_PAYLOAD"
+      "payload":"SCHEDULE"
     },
     {
       "type":"postback",
       "title":"끝말잇기",
-      "payload":"ENDTOEND_PAYLOAD"
+      "payload":"ENDTOEND"
     },
   ]
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAPf0iePgkrD2GPNmCz0CMO59Cqyl6UZCR2VUZCOtU06rE6FphSwv4xrrenP4NF1eIuQQUQalH6naTr4fiXnFd0rN6HTgb03VpZAhYQs2MAQeGqZBqCskOZA7uTeHwzLsJGmmaqQVco8MmmbCJu1N9I2rNtZAEEZCAZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD"

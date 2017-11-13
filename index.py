@@ -30,14 +30,41 @@ def handle_messages():
               print(messaging_event)
               if messaging_event.get("message"): 
                   sender_id = messaging_event["sender"]["id"]   
-                  recipient_id = messaging_event["recipient"]["id"] 
                   message_text = messaging_event["message"]["text"]  
                   send_text(sender_id, message_text)
+                  #text_match
               if messaging_event.get("postback"):
-                  print("postback")
-                  pass
+                  sender_id = messaging_event["sender"]["id"]   
+                  message_text = messaging_event["message"]["text"]  
+                  payload = messaging_event["postback"]["payload"]
+                  payload_match(sender_id, message_text, payload)
   return "ok"
 
+
+def payload_match(sender_id, message_text, payload):
+  if(payload == "STARTED"):
+    send_text(sender_id, "안녕하세요 SIGO 봇입니다. 메뉴에서 도움말 버튼을 누르시면 사용법을 확인하실 수 있습니다.")
+  elif(payload == "CAFETERIA"):
+    print(payload)
+  elif(payload == "SCHEDULE"):
+    print(payload)
+  elif(payload == "ENDTOEND"):
+    print(payload)
+  else:
+    print("payload error")
+
+# def send_buttton(sender_id, message_text, title, payload):
+#   data = json.dumps({
+#     "recipient": {"id": sender_id},
+#     "message": {
+#       "attachment": {
+#         "type": "postback",
+#         "text": 
+#       }
+#     }
+#   })
+#   send_message(data)
+  
 def send_text(sender_id, message_text):
   data = json.dumps({
     "recipient": {"id": sender_id},
