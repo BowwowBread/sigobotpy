@@ -1,5 +1,7 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+from difflib import SequenceMatcher
+import difflib
 import datetime
 import re 
 
@@ -7,7 +9,6 @@ now = datetime.datetime.now()
 currentTime = now.strftime('%Y%m')
 currentMonth = now.strftime('%m')
 currentDay = now.strftime("%d")
-print(now.strftime("%d"))
 if(int(currentDay) < 10) :
   currentDay = str(currentDay).replace('0', '')
 searchurl = "http://stu.sen.go.kr/sts_sci_md00_001.do?schulCode=B100000599&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=2&schYm={{date}}"
@@ -99,12 +100,61 @@ def dayofweek(day):
                 else :
                     return weekdic[day] + "요일은 급식을 먹는날이 아닙니다."
 
-print('------------------day test---------------')
-for i in range(1,32) :
-    print(day(i))
-print('------------------week test---------------')
-print(week(1))
-print(week(0))
-print('------------------dayofweek test---------------')
-for i in range(1,6) :
-    print(dayofweek(i))
+# print('------------------day test---------------')
+# for i in range(1,32) :
+#     print(day(i))
+# print('------------------week test---------------')
+# print(week(1))
+# print(week(0))
+# print('------------------dayofweek test---------------')
+# for i in range(1,6) :
+#     print(dayofweek(i))
+
+#--------------test--------------
+
+def messageMatching(message):
+  message = message.replace(' ', '')
+  if(textMatching(message, ["급식", "점심", "밥"], 0.3)):
+    if(tomorrowMatching(message, ["내일", "낼"], 0.4)):
+      print(day(int(currentDay) + 1))
+    elif(dayMatching(message))
+    else:
+      print(day(currentDay))
+      print(int(filter(str.isdigit, message)))
+
+
+def textMatching(message, matchText, ratio):
+  for text in matchText:
+    if(SequenceMatcher(None, text, message).ratio() > ratio):
+      return True
+
+def tomorrowMatching(message, matchText, ratio):
+  for text in matchText:
+    if(SequenceMatcher(None, text, message).ratio() > ratio):
+      return True
+
+# def dayMatching(message, matchText, ratio):
+messageMatching("14일급식")
+
+
+curl -X POST -H "Content-Type: application/json; charset=utf-8" -d '{
+  "setting_type" : "call_to_actions",
+  "thread_state" : "existing_thread",
+  "call_to_actions":[
+    {
+      "type":"postback",
+      "title":"급식",
+      "payload":"USER_DEFINED_PAYLOAD_FOR_CAFETERIA"
+    },
+    {
+      "type":"postback",
+      "title":"일정",
+      "payload":"USER_DEFINED_PAYLOAD_FOR_SCHEDULE"
+    },
+    {
+      "type":"postback",
+      "title":"끝말잇기",
+      "payload":"USER_DEFINED_PAYLOAD_FOR_ENDTOEND"
+    },
+  ]
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAPf0iePgkrD2GPNmCz0CMO59Cqyl6UZCR2VUZCOtU06rE6FphSwv4xrrenP4NF1eIuQQUQalH6naTr4fiXnFd0rN6HTgb03VpZAhYQs2MAQeGqZBqCskOZA7uTeHwzLsJGmmaqQVco8MmmbCJu1N9I2rNtZAEEZCAZDZD"
