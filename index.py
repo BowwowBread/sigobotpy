@@ -4,7 +4,7 @@ import requests
 
 app = Flask(__name__)
 
-access_token = 'EAAYi1m8AgjUBADYuPKYc2A3G8AC4XOpXmtUxBRtRYaDQe3kUeBSnbmytUb46ZBZCnYdDtqUPZBmZA3uEukBCtgKgRJtdZBamIDKBljwVjeqzsfOmAf52gxZCjbyOWjPc5ld1JkplAKIWM1OIolZAUq5YVwTJpZBZCUrD2UIM76UHWRwZDZD'
+access_token = 'EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD'
 @app.route('/', methods=['GET'])
 def handle_main():
   print('main')
@@ -32,18 +32,18 @@ def handle_messages():
                   sender_id = messaging_event["sender"]["id"]   
                   recipient_id = messaging_event["recipient"]["id"] 
                   message_text = messaging_event["message"]["text"]  
-                  send_message(access_token, sender_id, message_text)
+                  send_message(sender_id, message_text)
               if messaging_event.get("postback"):
                   print("postback")
                   pass
   return "ok"
 
-def send_message(token, recipient, text):
+def send_message(sender_id, message_text):
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-    params={"access_token": token},
+    params={"access_token": access_token},
     data=json.dumps({
-      "recipient": {"id": recipient},
-      "message": {"text": text}
+      "recipient": {"id": sender_id},
+      "message": {"text": message_text}
     }),
     headers={'Content-type': 'application/json'})
   if r.status_code != requests.codes.ok:
