@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
-PAT = 'EAAYi1m8AgjUBAPf0iePgkrD2GPNmCz0CMO59Cqyl6UZCR2VUZCOtU06rE6FphSwv4xrrenP4NF1eIuQQUQalH6naTr4fiXnFd0rN6HTgb03VpZAhYQs2MAQeGqZBqCskOZA7uTeHwzLsJGmmaqQVco8MmmbCJu1N9I2rNtZAEEZCAZDZD'
+PAT = 'EAAYi1m8AgjUBADYuPKYc2A3G8AC4XOpXmtUxBRtRYaDQe3kUeBSnbmytUb46ZBZCnYdDtqUPZBmZA3uEukBCtgKgRJtdZBamIDKBljwVjeqzsfOmAf52gxZCjbyOWjPc5ld1JkplAKIWM1OIolZAUq5YVwTJpZBZCUrD2UIM76UHWRwZDZD'
 @app.route('/', methods=['GET'])
 def handle_main():
   print('main')
@@ -56,8 +56,6 @@ def send_message(token, recipient, text):
       "message": {"text": text.decode('unicode_escape')}
     }),
     headers={'Content-type': 'application/json'})
-  if r.status_code != requests.codes.ok:
-    print(r.text)
 
 if __name__ == '__main__':
   app.run()
