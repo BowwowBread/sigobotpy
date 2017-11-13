@@ -29,8 +29,7 @@ def handle_messages():
   payload = request.get_data()
   print(payload)
   for sender, message in messaging_events(payload):
-    print(sender)
-    print(message)
+    print(message.decode('unicode_escape'))
     send_message(PAT, sender, message)
   return "ok"
 
