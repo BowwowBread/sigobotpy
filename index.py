@@ -4,8 +4,6 @@ import requests
 
 app = Flask(__name__)
 
-# This needs to be filled with the Page Access Token that will be provided
-# by the Facebook App that will be created.
 access_token = 'EAAYi1m8AgjUBADYuPKYc2A3G8AC4XOpXmtUxBRtRYaDQe3kUeBSnbmytUb46ZBZCnYdDtqUPZBmZA3uEukBCtgKgRJtdZBamIDKBljwVjeqzsfOmAf52gxZCjbyOWjPc5ld1JkplAKIWM1OIolZAUq5YVwTJpZBZCUrD2UIM76UHWRwZDZD'
 @app.route('/', methods=['GET'])
 def handle_main():
@@ -30,36 +28,26 @@ def handle_messages():
       for entry in data["entry"]:
           for messaging_event in entry["messaging"]:
               print(messaging_event)
-              if messaging_event.get("message"):  # someone sent us a message
-                  sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                  recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                  message_text = messaging_event["message"]["text"]  # the message's text
+              if messaging_event.get("message"): 
+                  sender_id = messaging_event["sender"]["id"]   
+                  recipient_id = messaging_event["recipient"]["id"] 
+                  message_text = messaging_event["message"]["text"]  
                   send_message(access_token, sender_id, message_text)
-              if messaging_event.get("delivery"):  # delivery confirmation
-                  pass
-              if messaging_event.get("optin"):  # optin confirmation
-                  pass
-              if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
+              if messaging_event.get("postback"):
                   print("postback")
                   pass
   return "ok"
-def messaging_events(payload):
-  """Generate tuples of (sender_id, message_text) from the
-  provided payload.
-  """
-  data = json.loads(payload)
-  messaging_events = data["entry"][0]["messaging"]
-  for event in messaging_events:
-    if "message" in event and "text" in event["message"]:
-      yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
-    else:
-      yield event["sender"]["id"], "I can't echo this"
+# def messaging_events(payload):
+#   data = json.loads(payload)
+#   messaging_events = data["entry"][0]["messaging"]
+#   for event in messaging_events:
+#     if "message" in event and "text" in event["message"]:
+#       yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
+#     else:
+#       yield event["sender"]["id"], "I can't echo this"
 
 
 def send_message(token, recipient, text):
-  """Send the message text to recipient with id recipient.
-  """
-
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": token},
     data=json.dumps({
