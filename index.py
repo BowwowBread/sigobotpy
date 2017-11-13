@@ -45,7 +45,7 @@ def payload_match(sender_id, payload):
   if(payload == "STARTED"):
     send_text(sender_id, "안녕하세요 SIGO 봇입니다. 메뉴에서 도움말 버튼을 누르시면 사용법을 확인하실 수 있습니다.")
   elif(payload == "CAFETERIA"):
-    attachment = json.dumps({
+    attachment = {
       "type": "template",
       "payload": {
         "template_type": "button",
@@ -73,7 +73,7 @@ def payload_match(sender_id, payload):
           },
         ]
       }
-    })
+    }
     send_buttton(sender_id, attachment)
   elif(payload == "SCHEDULE"):
     print(payload)
@@ -92,33 +92,13 @@ def send_buttton(sender_id, attachment):
   print(data)
   send_message(data)
   
-# def send_text(sender_id, message_text):
-#   data = json.dumps({
-#     "recipient": {"id": sender_id},
-#     "message": {"text": message_text}
-#   })
-#   send_message(data)
 def send_text(sender_id, message_text):
   data = json.dumps({
     "recipient": {"id": sender_id},
-    "message": {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "button",
-          "text": "test",
-          "buttons": [
-            {
-              "type": "postback",
-              "title": "다음 주 급식",
-              "payload": "NEXTWEEK_CAFETERIA"
-            }
-          ]
-        }
-      }
-    }
+    "message": {"text": message_text}
   })
   send_message(data)
+
 def send_message(data):
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": access_token},
