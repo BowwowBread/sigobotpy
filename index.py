@@ -60,7 +60,7 @@ def send_message(token, recipient, text):
 
 
 def message_matching(message):
-  if(message.SequenceMatcher(Nonde, '급식', message).ratio() > 0.5):
+  if(message.SequenceMatcher(None, '급식', message).ratio() > 0.5):
     print(message)
     
 if __name__ == '__main__':
