@@ -9,15 +9,22 @@ from flask import Flask, request
 app = Flask(__name__)
 
 
-@app.route('/webhook', methods=['GET'])
-def verify():
-    # when the endpoint is registered as a webhook, it must echo back
-    # the 'hub.challenge' value it receives in the query arguments
-    if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
-        if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
-            return "Verification token mismatch", 403
-        return request.args["hub.challenge"], 200
+access_token = 'EAAYi1m8AgjUBADYuPKYc2A3G8AC4XOpXmtUxBRtRYaDQe3kUeBSnbmytUb46ZBZCnYdDtqUPZBmZA3uEukBCtgKgRJtdZBamIDKBljwVjeqzsfOmAf52gxZCjbyOWjPc5ld1JkplAKIWM1OIolZAUq5YVwTJpZBZCUrD2UIM76UHWRwZDZD'
+@app.route('/', methods=['GET'])
+def handle_main():
+  print('main')
+  return("main")
 
+
+@app.route('/webhook', methods=['GET'])
+def handle_verification():
+  print('Handling Verification.')
+  if request.args.get('hub.verify_token', '') == 'SIGO':
+    print('Verification successful!')
+    return request.args.get('hub.challenge', '')
+  else:
+    print('Verification failed!')
+    return 'Error, wrong validation token'
     return "Hello world", 200
 
 
@@ -59,7 +66,7 @@ def send_message(recipient_id, message_text):
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
     params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+        "access_token": access_token
     }
     headers = {
         "Content-Type": "application/json"
