@@ -1,5 +1,4 @@
 from flask import Flask, request
-from difflib import SequenceMatcher
 import json
 import requests
 
@@ -28,6 +27,7 @@ def handle_verification():
 def handle_messages():
   print('Handling Messages')
   payload = request.get_data()
+  print(payload)
   for sender, message in messaging_events(payload):
     send_message(PAT, sender, message)
   return "ok"
@@ -40,28 +40,24 @@ def messaging_events(payload):
   messaging_events = data["entry"][0]["messaging"]
   for event in messaging_events:
     if "message" in event and "text" in event["message"]:
-      print(event)
       yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
     else:
-      print(event)
       yield event["sender"]["id"], "I can't echo this"
 
 
 def send_message(token, recipient, text):
-  if(text):
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-      params={"access_token": token},
-      data=json.dumps({
-        "recipient": {"id": recipient},
-        "message": {"text": text}
-      }),
-      headers={'Content-type': 'application/json'})
+  """Send the message text to recipient with id recipient.
+  """
 
+  r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+    params={"access_token": token},
+    data=json.dumps({
+      "recipient": {"id": recipient},
+      "message": {"text": text.decode('unicode_escape')}
+    }),
+    headers={'Content-type': 'application/json'})
+  if r.status_code != requests.codes.ok:
+    print(r.text)
 
-def message_matching(message):
-  print(message)
-  if(message.SequenceMatcher(None, '급식', message).ratio() > 0.5):
-    print(message)
-    
 if __name__ == '__main__':
   app.run()
