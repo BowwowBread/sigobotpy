@@ -38,7 +38,7 @@ def handle_verification():
 #                   pass
 #   return "ok"
 
-@app.route('/', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def handle_messages():
   payload = request.get_data()
   for sender, message in messaging_events(payload):
