@@ -92,10 +92,31 @@ def send_buttton(sender_id, attachment):
   print(data)
   send_message(data)
   
+# def send_text(sender_id, message_text):
+#   data = json.dumps({
+#     "recipient": {"id": sender_id},
+#     "message": {"text": message_text}
+#   })
+#   send_message(data)
 def send_text(sender_id, message_text):
   data = json.dumps({
     "recipient": {"id": sender_id},
-    "message": {"text": message_text}
+    "message": {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "button",
+          "text": "test",
+          "buttons": [
+            {
+              "type": "postback",
+              "title": "다음 주 급식",
+              "payload": "NEXTWEEK_CAFETERIA"
+            }
+          ]
+        }
+      }
+    }
   })
   send_message(data)
 def send_message(data):
