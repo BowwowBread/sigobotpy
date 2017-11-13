@@ -28,6 +28,7 @@ def handle_verification():
 def handle_messages():
   print('Handling Messages')
   payload = request.get_data()
+  print(payload)
   for sender, message in messaging_events(payload):
     print(message.decode('unicode_escape'))
     send_message(PAT, sender, message)

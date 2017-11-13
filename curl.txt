@@ -11,25 +11,33 @@ curl -X POST -H "Content-Type: application/json" -d '{
 }' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAPf0iePgkrD2GPNmCz0CMO59Cqyl6UZCR2VUZCOtU06rE6FphSwv4xrrenP4NF1eIuQQUQalH6naTr4fiXnFd0rN6HTgb03VpZAhYQs2MAQeGqZBqCskOZA7uTeHwzLsJGmmaqQVco8MmmbCJu1N9I2rNtZAEEZCAZDZD"
 
 
+#greeting
+
+curl -X POST -H "Content-Type: application/json" -d '{
+                       "setting_type":"greeting",
+                       "greeting":{
+                                     "text":"Hello {{user_first_name}}!"
+                             }
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAPf0iePgkrD2GPNmCz0CMO59Cqyl6UZCR2VUZCOtU06rE6FphSwv4xrrenP4NF1eIuQQUQalH6naTr4fiXnFd0rN6HTgb03VpZAhYQs2MAQeGqZBqCskOZA7uTeHwzLsJGmmaqQVco8MmmbCJu1N9I2rNtZAEEZCAZDZD"
 #button
 
-curl -X POST -H "Content-Type: application/json" --data-ascii'{
+curl -X POST -H "Content-Type: application/json" -d'{
   "setting_type" : "call_to_actions",
   "thread_state" : "existing_thread",
   "call_to_actions":[
     {
       "type":"postback",
-      "title":"급식",
+      "title":"CAFETERIA",
       "payload":"USER_DEFINED_PAYLOAD_FOR_CAFETERIA"
     },
     {
       "type":"postback",
-      "title":"일정",
+      "title":"SCHEDULE",
       "payload":"USER_DEFINED_PAYLOAD_FOR_SCHEDULE"
     },
     {
       "type":"postback",
-      "title":"끝말잇기",
+      "title":"ENDTOEND",
       "payload":"USER_DEFINED_PAYLOAD_FOR_ENDTOEND"
     },
   ]
