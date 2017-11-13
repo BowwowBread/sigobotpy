@@ -6,19 +6,24 @@ app = Flask(__name__)
 
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
-PAT = ''
-
+PAT = 'EAAYi1m8AgjUBAKZAJM64My0cZCcZCrrpLi9RRWhGCZBQwxfmntDu5UAopGUP9bGGC20EHA8FhOpPwIAkJZAO2lHdXTPiZA74d0sLP0QUcY1CWNpPZAnCMpAzKdqxWiEaLPQS5u6jLpAxOcb8bbRgnTj15Cp5Q7TLhZC4XJ6YdFrEFQZDZD'
 @app.route('/', methods=['GET'])
+def handle_main():
+  print "main"
+  return "main"
+
+
+@app.route('/webhook', methods=['GET'])
 def handle_verification():
   print "Handling Verification."
-  if request.args.get('hub.verify_token', '') == 'my_voice_is_my_password_verify_me':
+  if request.args.get('hub.verify_token', '') == 'SIGO':
     print "Verification successful!"
     return request.args.get('hub.challenge', '')
   else:
     print "Verification failed!"
     return 'Error, wrong validation token'
 
-@app.route('/', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def handle_messages():
   print "Handling Messages"
   payload = request.get_data()
