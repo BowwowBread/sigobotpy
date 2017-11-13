@@ -45,7 +45,10 @@ def payload_match(sender_id, payload):
   if(payload == "STARTED"):
     send_text(sender_id, "안녕하세요 SIGO 봇입니다. 메뉴에서 도움말 버튼을 누르시면 사용법을 확인하실 수 있습니다.")
   elif(payload == "CAFETERIA"):
-    button = json.dumps({
+    data = json.dumps({
+      "recipient": {
+        "id": sender_id
+      },
       "message": {
         "attachment": {
           "type": "template",
@@ -57,12 +60,27 @@ def payload_match(sender_id, payload):
                 "title": "오늘 급식",
                 "payload": "TODAY_CAFETERIA"
               },
+              {
+                "type": "postback",
+                "title": "내일 급식",
+                "payload": "TOMORROW_CAFETERIA"
+              },
+              {
+                "type": "postback",
+                "title": "이번 주 급식",
+                "payload": "WEEK_CAFETERIA"
+              },
+              {
+                "type": "postback",
+                "title": "다음 주 급식",
+                "payload": "NEXTWEEK_CAFETERIA"
+              },
             ]
           }
         }
       }
     })
-    send_buttton(sender_id, attachment)
+    send_message(data)
   elif(payload == "SCHEDULE"):
     print(payload)
   elif(payload == "ENDTOEND"):
@@ -70,12 +88,13 @@ def payload_match(sender_id, payload):
   else:
     print("payload error")
 
-def send_buttton(sender_id, button):
+def send_buttton(sender_id, attachment):
   data = json.dumps({
     "recipient": {"id": sender_id},
-    "message": button
+    "message": {
+      "attachment": attachment
+    }
   })
-  print(data)
   send_message(data)
   
 def send_text(sender_id, message_text):
