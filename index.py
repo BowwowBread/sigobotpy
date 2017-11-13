@@ -29,7 +29,6 @@ def handle_messages():
   print('Handling Messages')
   payload = request.get_data()
   for sender, message in messaging_events(payload):
-    print(message.decode('unicode_escape'))
     send_message(PAT, sender, message)
   return "ok"
 
@@ -40,7 +39,6 @@ def messaging_events(payload):
   data = json.loads(payload)
   messaging_events = data["entry"][0]["messaging"]
   for event in messaging_events:
-    print(event)
     if "message" in event and "text" in event["message"]:
       yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
     else:
@@ -49,7 +47,6 @@ def messaging_events(payload):
 
 def send_message(token, recipient, text):
   message = text.decode('unicode_escape')
-  # print(message_matching(message))
   if(message):
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
       params={"access_token": token},
