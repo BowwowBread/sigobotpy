@@ -40,8 +40,10 @@ def messaging_events(payload):
   messaging_events = data["entry"][0]["messaging"]
   for event in messaging_events:
     if "message" in event and "text" in event["message"]:
+      print("a")
       yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
     else:
+      print("b")
       yield event["sender"]["id"], "I can't echo this"
 
 
