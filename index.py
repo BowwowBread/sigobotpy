@@ -109,56 +109,55 @@ def send_buttton(sender_id, attachment):
 #     print(r.text)
 
 def send_text(sender_id, message_text):
-  # data = json.dumps({
-  #   "recipient": {"id": sender_id},
-  #   "message": {"text": message_text}
-  # })
   data = json.dumps({
     "recipient": {"id": sender_id},
-    "message": {
-      "attachment": {
-        "type":"template",
-        "payload":{
-          "template_type":"button",
-          "text":"날짜를 선택해주세요.",
-          "buttons":[
-            {
-              "type":"postback",
-              "title":"오늘 급식",
-              "payload":"TODAY_CAFETERIA"
-            },
-            {
-              "type":"postback",
-              "title":"내일 급식",
-              "payload":"TOMORROW_CAFETERIA"
-            },
-            {
-              "type":"postback",
-              "title":"요일 선택",
-              "payload":"DAYOFWEEK_CAFETERIA"
-            },
-            {
-              "type":"postback",
-              "title":"이번 주 급식",
-              "payload":"WEEK_CAFETERIA"
-            },
-            {
-              "type":"postback",
-              "title":"다음 주 급식",
-              "payload":"NEXTWEEK_CAFETERIA"
-            },
-          ]
-        }
-      }
-    }
+    "message": {"text": message_text}
   })
+ 
   send_message(data)
   
-
 def send_message(data):
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": access_token},
-    data=data,
+    data= json.dumps({
+      "recipient": {"id": sender_id},
+      "message": {
+        "attachment": {
+        "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"날짜를 선택해주세요.",
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"오늘 급식",
+                "payload":"TODAY_CAFETERIA"
+              },
+              {
+                "type":"postback",
+                "title":"내일 급식",
+                "payload":"TOMORROW_CAFETERIA"
+              },
+              {
+                "type":"postback",
+                "title":"요일 선택",
+                "payload":"DAYOFWEEK_CAFETERIA"
+              },
+              {
+                "type":"postback",
+                "title":"이번 주 급식",
+                "payload":"WEEK_CAFETERIA"
+              },
+              {
+                "type":"postback",
+                "title":"다음 주 급식",
+                "payload":"NEXTWEEK_CAFETERIA"
+              },
+            ]
+          }
+        }
+      }
+    }),
     headers={'Content-type': 'application/json'})
 
 if __name__ == '__main__':
