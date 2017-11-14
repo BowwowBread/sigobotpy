@@ -1,6 +1,7 @@
 from flask import Flask, request
 import json
 import requests
+import time
 
 app = Flask(__name__)
 
@@ -75,11 +76,13 @@ def send_buttton(sender_id, attachment):
 def send_text(sender_id, message_text):
   data = json.dumps({
     "recipient": {"id": sender_id},
-    "message": {"text": message_text}
+    "message": {"text": message_text},
+    "sender_action": "typing_on"
   })
   send_message(data)
   
 def send_message(data):
+  
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": access_token},
     data=data,
