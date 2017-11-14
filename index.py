@@ -36,11 +36,11 @@ def handle_messages():
               if messaging_event.get("postback"):
                   sender_id = messaging_event["sender"]["id"]   
                   payload = messaging_event["postback"]["payload"]
-                  payload_match(sender_id, message_text, payload)
+                  payload_match(sender_id, payload)
   return "ok"
 
 
-def payload_match(sender_id, message_text, payload):
+def payload_match(sender_id, payload):
   if(payload == "STARTED"):
     send_text(sender_id, "안녕하세요 SIGO 봇입니다. 메뉴에서 도움말 버튼을 누르시면 사용법을 확인하실 수 있습니다.")
     get_userProfile(sender_id)
