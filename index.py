@@ -41,39 +41,11 @@ def handle_messages():
 
 def payload_match(sender_id, payload):
   if(payload == "STARTED"):
-    send_text(sender_id, "안녕하세요 SIGO 봇입니다.")
-    send_text(sender_id, "메뉴에서 도움말 버튼을 누르시면 사용법을 확인하실 수 있습니다.")
+    send_text(sender_id, "안녕 나는 시고야")
+    send_text(sender_id, "메뉴에서 버튼을 누르면 도움말을 볼 수 있어")
   elif(payload == "CAFETERIA"):
-    attachment = {
-      "type":"template",
-      "payload":{
-        "template_type":"button",
-        "text":"날짜를 선택해주세요.",
-        "buttons":[
-          {
-            "type":"postback",
-            "title":"오늘 급식",
-            "payload":"TODAY_CAFETERIA"
-          },
-          {
-            "type":"postback",
-            "title":"내일 급식",
-            "payload":"TOMORROW_CAFETERIA"
-          },
-          {
-            "type":"postback",
-            "title":"이번 주 급식",
-            "payload":"WEEK_CAFETERIA"
-          },
-          {
-            "type":"postback",
-            "title":"다음 주 급식",
-            "payload":"NEXTWEEK_CAFETERIA"
-          },
-        ]
-      }
-    }
-    send_buttton(sender_id, attachment)
+    send_text(sender_id, "급식 사용법을 알려줄게")
+    send_text(sender_id, "먼저 오늘급식이나 내일 급식을")
   elif(payload == "SCHEDULE"):
     print(payload)
   elif(payload == "ENDTOEND"):

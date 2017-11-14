@@ -137,24 +137,3 @@ def tomorrowMatching(message, matchText, ratio):
 messageMatching("14일급식")
 
 
-curl -X POST -H "Content-Type: application/json; charset=utf-8" -d '{
-  "setting_type" : "call_to_actions",
-  "thread_state" : "existing_thread",
-  "call_to_actions":[
-    {
-      "type":"postback",
-      "title":"급식",
-      "payload":"USER_DEFINED_PAYLOAD_FOR_CAFETERIA"
-    },
-    {
-      "type":"postback",
-      "title":"일정",
-      "payload":"USER_DEFINED_PAYLOAD_FOR_SCHEDULE"
-    },
-    {
-      "type":"postback",
-      "title":"끝말잇기",
-      "payload":"USER_DEFINED_PAYLOAD_FOR_ENDTOEND"
-    },
-  ]
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAPf0iePgkrD2GPNmCz0CMO59Cqyl6UZCR2VUZCOtU06rE6FphSwv4xrrenP4NF1eIuQQUQalH6naTr4fiXnFd0rN6HTgb03VpZAhYQs2MAQeGqZBqCskOZA7uTeHwzLsJGmmaqQVco8MmmbCJu1N9I2rNtZAEEZCAZDZD"
