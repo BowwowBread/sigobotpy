@@ -26,6 +26,7 @@ def handle_messages():
   data = request.get_json()
   if data["object"] == "page":
       for entry in data["entry"]:
+          print(entry)
           for messaging_event in entry["messaging"]:
               print(messaging_event)
               if messaging_event.get("message"): 
