@@ -62,11 +62,6 @@ def payload_match(sender_id, payload):
           },
           {
             "type":"postback",
-            "title":"요일 선택",
-            "payload":"DAYOFWEEK_CAFETERIA"
-          },
-          {
-            "type":"postback",
             "title":"이번 주 급식",
             "payload":"WEEK_CAFETERIA"
           },
@@ -107,50 +102,10 @@ def send_buttton(sender_id, attachment):
 #     print(r.text)
 
 def send_text(sender_id, message_text):
-  # data = json.dumps({
-  #   "recipient": {"id": sender_id},
-  #   "message": {"text": message_text}
-  # })
   data = json.dumps({
     "recipient": {"id": sender_id},
-    "message": {
-      "attachment": {
-      "type":"template",
-        "payload":{
-          "template_type":"button",
-          "text":"날짜를 선택해주세요.",
-          "buttons":[
-            {
-              "type":"postback",
-              "title":"asd",
-              "payload":"TODAY_CAFETERIA"
-            },
-            {
-              "type":"postback",
-              "title":"asd",
-              "payload":"TOMORROW_CAFETERIA"
-            },
-            {
-              "type":"postback",
-              "title":"asd",
-              "payload":"DAYOFWEEK_CAFETERIA"
-            },
-            {
-              "type":"postback",
-              "title":"asd",
-              "payload":"WEEK_CAFETERIA"
-            },
-            {
-              "type":"postback",
-              "title":"asd",
-              "payload":"NEXTWEEK_CAFETERIA"
-            },
-          ]
-        }
-      }
-    }
+    "message": {"text": message_text}
   })
-  print(data)
   send_message(data)
   
 def send_message(data):
@@ -158,7 +113,7 @@ def send_message(data):
     params={"access_token": access_token},
     data=data,
     headers={'Content-type': 'application/json'})
-  if(r.status_code != "200"):
+  if(r.status_code != "200")
     print(r.text)
 
 if __name__ == '__main__':
