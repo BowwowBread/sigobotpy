@@ -94,7 +94,8 @@ def send_buttton(sender_id, attachment):
       "attachment": attachment
     }
   })
-  send_message(data)
+  print(data)
+  # send_message(data)
   
 # def get_userProfile(sender_id):
 #   r = requests.get("https://graph.facebook.com/v2.6/"+sender_id+"?fields=first_name,last_name",
