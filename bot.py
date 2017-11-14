@@ -111,7 +111,6 @@ def dayofweek(day):
 #     print(dayofweek(i))
 
 #--------------test--------------
-dayCount = 0
 def messageMatching(message):
   dayCount = 0
   message = message.replace(' ', '')
@@ -122,8 +121,17 @@ def messageMatching(message):
       return week(1)
     elif(textMatching(message, ["다음주", "담주"], 0.5)):
       return week(0)
-    elif(textMatching(message, ["월요일, 화요일, 수요일, 목요일, 금요일"], 0.5)):
-      return dayofweek(dayCount)
+    elif(textMatching(message, ["요일", "욜", "여일"], 0.5)):
+      if(textMatching(message, ["월"], 0.5)):
+        return dayofweek(1)
+      elif(textMatching(message, ["화"], 0.5)):
+        return dayofweek(2)
+      elif(textMatching(message, ["수"], 0.5)):
+        return dayofweek(3)
+      elif(textMatching(message, ["목"], 0.5)):
+        return dayofweek(4)
+      elif(textMatching(message, ["금"], 0.5)):
+        return dayofweek(5)
     elif(textMatching(message, ["일"], 0.5)):
       date = re.sub('[^0-9]', '', message)
       if(int(date) >= 1 and int(date) <= 31):
@@ -135,6 +143,5 @@ def messageMatching(message):
 
 def textMatching(message, matchText, ratio):
   for text in matchText:
-    dayCount += 1
     if(SequenceMatcher(None, text, message).ratio() > ratio):
       return True
