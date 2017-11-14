@@ -122,27 +122,27 @@ def send_text(sender_id, message_text):
           "buttons":[
             {
               "type":"postback",
-              "title":"오늘 급식",
+              "title":"asd",
               "payload":"TODAY_CAFETERIA"
             },
             {
               "type":"postback",
-              "title":"내일 급식",
+              "title":"asd",
               "payload":"TOMORROW_CAFETERIA"
             },
             {
               "type":"postback",
-              "title":"요일 선택",
+              "title":"asd",
               "payload":"DAYOFWEEK_CAFETERIA"
             },
             {
               "type":"postback",
-              "title":"이번 주 급식",
+              "title":"asd",
               "payload":"WEEK_CAFETERIA"
             },
             {
               "type":"postback",
-              "title":"다음 주 급식",
+              "title":"asd",
               "payload":"NEXTWEEK_CAFETERIA"
             },
           ]
@@ -158,6 +158,8 @@ def send_message(data):
     params={"access_token": access_token},
     data=data,
     headers={'Content-type': 'application/json'})
+    if(r.status_code != "2000")
+      print(r.text)
 
 if __name__ == '__main__':
   app.run()
