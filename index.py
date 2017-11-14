@@ -77,17 +77,25 @@ def send_text(sender_id, message_text):
   data = json.dumps({
     "recipient": {"id": sender_id},
     "message": {"text": message_text},
-    "sender_action": "typing_on"
   })
+  send_action(sender_id, "typing_on")
   send_message(data)
   
+def send_action(sender_id, action):
+  data = json.dumps({
+    "recipient": {"id": sender_id},
+    "sender_action": action
+  })
+  send_message(data)
 def send_message(data):
   
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": access_token},
     data=data,
     headers={'Content-type': 'application/json'})
-  if(r.status_code != "200"):
+  if(r.status_code == "200"):
+    print(r.text)
+  else:
     print(r.text)
 
 if __name__ == '__main__':
