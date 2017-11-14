@@ -39,9 +39,9 @@ def day(day):
                     result += re.sub('[0-9a-zA-Z(\.)<>]','',str(v.div)).replace('/', '\n').replace('[중식]', str(day))
                     return result 
                 else :
-                    return str(day) + "일은 급식을 먹는 날이 아니에요"
+                    return "\n" + str(day) + "일은 급식을 먹는 날이 아니에요"
     if result == "" :
-        return str(day) + "일은 급식을 먹는 날이 아니에요"
+        return "\n" + str(day) + "일은 급식을 먹는 날이 아니에요"
 
 def week(state):
     result = ""
@@ -59,10 +59,10 @@ def week(state):
                         if len(i) != 1:
                             result += re.sub('[0-9a-zA-Z(\.)<>]', '', str(i)).replace('/', '\n').replace('[중식]', i.contents[0])
                         elif daycount != 6 and daycount != 0:
-                            result += i.contents[0] + "일은 급식을 먹는날이 아니에요 \n"
+                            result += "\n" + i.contents[0] + "일은 급식을 먹는날이 아니에요 \n"
                             timeout += 1                            
                         elif timeout >= 5 :
-                            return "이번 주는 급식을 먹는날이 아니에요 \n"
+                            return "\n 이번 주는 급식을 먹는날이 아니에요 \n"
                         daycount += 1
                     return result
                 # 다음주
@@ -74,10 +74,10 @@ def week(state):
                         if len(i) != 1 :
                             result += re.sub('[0-9a-zA-Z(\.)<>]', '', str(i)).replace('/', '\n').replace('[중식]', i.contents[0])
                         elif len(i) != 1 and daycount != 6 and daycount != 0:
-                            result += i.contents[0] + "일은 급식을 먹는날이 아니에요 \n"
+                            result += "\n" + i.contents[0] + "일은 급식을 먹는날이 아니에요 \n"
                             timeout += 1                           
                         elif timeout >= 5 :
-                            return "다음 주는 급식을 먹는날이 아니에요 \n"
+                            return "\n 다음 주는 급식을 먹는날이 아니에요 \n"
                         daycount += 1
                     return result
 def dayofweek(day):
@@ -96,9 +96,9 @@ def dayofweek(day):
                     result += re.sub('[0-9a-zA-Z(\.)<>]', '', daylist[day]).replace('/', '\n').replace('[중식]', dayday)    
                     return result
                 elif dayday != ' ' :
-                    return str(dayday) +"일 " + weekdic[day] + "요일은 급식을 먹는날이 아니에요"
+                    return "\n" + str(dayday) +"일 " + weekdic[day] + "요일은 급식을 먹는날이 아니에요"
                 else :
-                    return weekdic[day] + "요일은 급식을 먹는날이 아니에요"
+                    return "\n" + weekdic[day] + "요일은 급식을 먹는날이 아니에요"
 
 # print('------------------day test---------------')
 # for i in range(1,32) :
@@ -121,21 +121,23 @@ def messageMatching(message):
       return week(1)
     elif(textMatching(message, ["다음주", "담주"], 0.5)):
       return week(0)
-    elif(textMatching(message, ["요일", "욜", "여일"], 0.5)):
-      if(textMatching(message, ["월"], 0.5)):
+    elif(textMatching(message, ["요일", "욜", "여일"], 0.3)):
+      if(textMatching(message, ["월"], 0.3)):
         return dayofweek(1)
-      elif(textMatching(message, ["화"], 0.5)):
+      elif(textMatching(message, ["화"], 0.3)):
         return dayofweek(2)
-      elif(textMatching(message, ["수"], 0.5)):
+      elif(textMatching(message, ["수"], 0.3)):
         return dayofweek(3)
-      elif(textMatching(message, ["목"], 0.5)):
+      elif(textMatching(message, ["목"], 0.3)):
         return dayofweek(4)
-      elif(textMatching(message, ["금"], 0.5)):
+      elif(textMatching(message, ["금"], 0.3)):
         return dayofweek(5)
-    elif(textMatching(message, ["일"], 0.5)):
+    elif(textMatching(message, ["일"], 0.2)):
       date = re.sub('[^0-9]', '', message)
       if(int(date) >= 1 and int(date) <= 31):
         return day(int(date))
+      else:
+        return "정확한 날짜를 입력해줘요"
     else:
       return day(currentDay)
   else:
@@ -145,3 +147,5 @@ def textMatching(message, matchText, ratio):
   for text in matchText:
     if(SequenceMatcher(None, text, message).ratio() > ratio):
       return True
+
+print(messageMatching("135일급"))
