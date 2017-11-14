@@ -12,7 +12,8 @@ currentDay = now.strftime("%d")
 
 def searchSchedule(month):
   if(int(month) < 10) :
-    month = str(month).replace('0', '')
+    month = '0' + str(month) 
+
   searchurl = "http://stu.sen.go.kr/sts_sci_sf01_001.do?schulCode=B100000599&schulCrseScCode=4&schulKndScCode=04&ay={{year}}&mm={{month}}"
   url = searchurl.replace('{{year}}', CurrentYear).replace('{{month}}', str(month))
   try:
