@@ -74,11 +74,12 @@ def send_buttton(sender_id, attachment):
 #     print(r.text)
 
 def send_text(sender_id, message_text):
+  send_action(sender_id, "typing_on")  
+  time.sleep(len(message_text)/15)
   data = json.dumps({
     "recipient": {"id": sender_id},
     "message": {"text": message_text},
   })
-  send_action(sender_id, "typing_on")
   send_message(data)
   
 def send_action(sender_id, action):
