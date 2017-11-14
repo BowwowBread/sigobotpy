@@ -91,14 +91,14 @@ def dayofweek(day):
                 daylist = str(v.parent).split('</td>')            
                 # 날짜 찾기    
                 dayday = re.sub('[a-zA-Z(\.)(\n)<>]', '',daylist[day].split('<br/>')[0])
-                if len(daylist[day]) != 17:
+                if len(daylist[day]) > 18:
                     result += weekdic[day] + "요일 급식"
                     result += re.sub('[0-9a-zA-Z(\.)<>]', '', daylist[day]).replace('/', '\n').replace('[중식]', dayday)    
                     return result
                 elif dayday != ' ' :
-                    return "\n" + str(dayday) +"일 " + weekdic[day] + "요일은 급식을 먹는날이 아니에요"
-                else :
-                    return "\n" + weekdic[day] + "요일은 급식을 먹는날이 아니에요"
+                    return str(dayday).replace('/', '') +"일 " + weekdic[day] + "요일은 급식을 먹는날이 아니에요"
+                else:
+                    return str(dayday).replace('/', '') +"일 " + weekdic[day] + "요일은 급식을 먹는날이 아니에요"
 
 # print('------------------day test---------------')
 # for i in range(1,32) :
@@ -121,16 +121,16 @@ def messageMatching(message):
       return week(1)
     elif(textMatching(message, ["다음주", "담주"], 0.5)):
       return week(0)
-    elif(textMatching(message, ["요일", "욜", "여일"], 0.3)):
-      if(textMatching(message, ["월"], 0.3)):
+    elif(textMatching(message, ["요일", "욜", "여일"], 0.2)):
+      if(textMatching(message, ["월"], 0.1)):
         return dayofweek(1)
-      elif(textMatching(message, ["화"], 0.3)):
+      elif(textMatching(message, ["화"], 0.1)):
         return dayofweek(2)
-      elif(textMatching(message, ["수"], 0.3)):
+      elif(textMatching(message, ["수"], 0.1)):
         return dayofweek(3)
-      elif(textMatching(message, ["목"], 0.3)):
+      elif(textMatching(message, ["목"], 0.1)):
         return dayofweek(4)
-      elif(textMatching(message, ["금"], 0.3)):
+      elif(textMatching(message, ["금"], 0.1)):
         return dayofweek(5)
     elif(textMatching(message, ["일"], 0.2)):
       date = re.sub('[^0-9]', '', message)
@@ -148,4 +148,4 @@ def textMatching(message, matchText, ratio):
     if(SequenceMatcher(None, text, message).ratio() > ratio):
       return True
 
-print(messageMatching("135일급"))
+print(messageMatching("금요일급식"))
