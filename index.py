@@ -34,11 +34,13 @@ def handle_messages():
               if messaging_event.get("message"): 
                   sender_id = messaging_event["sender"]["id"]   
                   message_text = messaging_event["message"]["text"]  
+                  send_action(sender_id, "typing_on")                      
                   text_match(sender_id, message_text)
                   #text_match
               if messaging_event.get("postback"):
                   sender_id = messaging_event["sender"]["id"]   
                   payload = messaging_event["postback"]["payload"]
+                  send_action(sender_id, "typing_on")                      
                   payload_match(sender_id, payload)
   return "ok"
 
@@ -87,7 +89,6 @@ def text_match(sender_id, message_text):
     send_api(sender_id, result)    
 
 def send_text(sender_id, message_text):
-  send_action(sender_id, "typing_on")  
   time.sleep(len(message_text)/15)
   data = json.dumps({
     "recipient": {"id": sender_id},
@@ -101,6 +102,7 @@ def send_api(sender_id, result):
     "message": {"text": result},
   })
   send_message(data)
+  
 def send_action(sender_id, action):
   data = json.dumps({
     "recipient": {"id": sender_id},
