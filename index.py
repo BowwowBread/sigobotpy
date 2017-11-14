@@ -109,7 +109,7 @@ def send_message(data):
     params={"access_token": access_token},
     data=data,
     headers={'Content-type': 'application/json'})
-  if(r.status_code != "200")
+  if(r.status_code != "200"):
     print(r.text)
 
 if __name__ == '__main__':
