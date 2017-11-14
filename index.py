@@ -45,7 +45,10 @@ def payload_match(sender_id, payload):
     send_text(sender_id, "메뉴에서 버튼을 누르면 도움말을 볼 수 있어")
   elif(payload == "CAFETERIA"):
     send_text(sender_id, "급식 사용법을 알려줄게")
-    send_text(sender_id, "먼저 오늘급식이나 내일 급식을")
+    send_text(sender_id, "먼저 오늘 급식과 내일 급식을 알 수 있어")
+    send_text(sender_id, "예를들면 급식, 점심, 밥, 내일급식 이렇게 말이야")
+    send_text(sender_id, "그리고 이번 주 급식과 다음 주 급식을 알 수 있고,")
+    send_text(sender_id, "월요일 급식, 목요일 급식, 8일 급식 이런식으로도 알 수 있어")
   elif(payload == "SCHEDULE"):
     print(payload)
   elif(payload == "ENDTOEND"):
