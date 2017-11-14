@@ -105,6 +105,7 @@ def dayofweek(day):
 #     print(day(i))
 # print('------------------week test---------------')
 # print(week(1))
+print(len(str(week(1)).replace('\n', '').replace(' ', ''))/30)
 # print(week(0))
 # print('------------------dayofweek test---------------')
 # for i in range(1,6) :
@@ -112,28 +113,28 @@ def dayofweek(day):
 
 #--------------test--------------
 
-def messageMatching(message):
-  message = message.replace(' ', '')
-  if(textMatching(message, ["급식", "점심", "밥"], 0.3)):
-    if(tomorrowMatching(message, ["내일", "낼"], 0.4)):
-      print(day(int(currentDay) + 1))
-    elif(dayMatching(message))
-    else:
-      print(day(currentDay))
-      print(int(filter(str.isdigit, message)))
+# def messageMatching(message):
+#   message = message.replace(' ', '')
+#   if(textMatching(message, ["급식", "점심", "밥"], 0.3)):
+#     if(tomorrowMatching(message, ["내일", "낼"], 0.4)):
+#       print(day(int(currentDay) + 1))
+#     elif(dayMatching(message))
+#     else:
+#       print(day(currentDay))
+#       print(int(filter(str.isdigit, message)))
 
 
-def textMatching(message, matchText, ratio):
-  for text in matchText:
-    if(SequenceMatcher(None, text, message).ratio() > ratio):
-      return True
+# def textMatching(message, matchText, ratio):
+#   for text in matchText:
+#     if(SequenceMatcher(None, text, message).ratio() > ratio):
+#       return True
 
-def tomorrowMatching(message, matchText, ratio):
-  for text in matchText:
-    if(SequenceMatcher(None, text, message).ratio() > ratio):
-      return True
+# def tomorrowMatching(message, matchText, ratio):
+#   for text in matchText:
+#     if(SequenceMatcher(None, text, message).ratio() > ratio):
+#       return True
 
 # def dayMatching(message, matchText, ratio):
-messageMatching("14일급식")
+# messageMatching("14일급식")
 
 

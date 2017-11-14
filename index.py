@@ -75,7 +75,7 @@ def send_buttton(sender_id, attachment):
 
 def send_text(sender_id, message_text):
   send_action(sender_id, "typing_on")  
-  time.sleep(len(message_text)/15)
+  time.sleep(len(message_text)/30)
   data = json.dumps({
     "recipient": {"id": sender_id},
     "message": {"text": message_text},
@@ -95,7 +95,7 @@ def send_message(data):
     data=data,
     headers={'Content-type': 'application/json'})
   if(r.status_code == "200"):
-    print(r.text)
+    pass
   else:
     print(r.text)
 
