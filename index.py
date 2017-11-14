@@ -89,11 +89,7 @@ def send_buttton(sender_id, attachment):
     }
   })
   print(data)
-  aa = json.dumps({
-    "recipient": {"id": sender_id},
-    "message": {"text": message_text}
-  })
-  send_message(aa)
+  send_message(data)
   
 # def get_userProfile(sender_id):
 #   r = requests.get("https://graph.facebook.com/v2.6/"+sender_id+"?fields=first_name,last_name",
