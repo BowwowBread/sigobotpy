@@ -43,6 +43,7 @@ def handle_messages():
 def payload_match(sender_id, message_text, payload):
   if(payload == "STARTED"):
     send_text(sender_id, "안녕하세요 SIGO 봇입니다. 메뉴에서 도움말 버튼을 누르시면 사용법을 확인하실 수 있습니다.")
+    get_userProfile(sender_id)
   elif(payload == "CAFETERIA"):
     print(payload)
   elif(payload == "SCHEDULE"):
@@ -64,6 +65,12 @@ def payload_match(sender_id, message_text, payload):
 #   })
 #   send_message(data)
   
+def get_userProfile(sender_id):
+  r = request.post("https://graph.facebook.com/v2.6/<PSID>?fields=first_name,last_name",
+    params={"access_token": access_token})
+  if(r.status_code == 200):
+    print(r.text)
+
 def send_text(sender_id, message_text):
   data = json.dumps({
     "recipient": {"id": sender_id},
