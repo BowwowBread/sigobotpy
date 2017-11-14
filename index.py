@@ -1,7 +1,10 @@
 from flask import Flask, request
+from difflib import SequenceMatcher
 import json
 import requests
 import time
+import bot
+
 
 app = Flask(__name__)
 
@@ -31,7 +34,7 @@ def handle_messages():
               if messaging_event.get("message"): 
                   sender_id = messaging_event["sender"]["id"]   
                   message_text = messaging_event["message"]["text"]  
-                  send_text(sender_id, message_text)
+                  text_match(sender_id, message_text)
                   #text_match
               if messaging_event.get("postback"):
                   sender_id = messaging_event["sender"]["id"]   
@@ -73,15 +76,28 @@ def send_buttton(sender_id, attachment):
 #   if(r.status_code == 200):
 #     print(r.text)
 
+def text_match(sender_id, message_text):
+  result = bot.messageMatching(message_text)
+  if(result == message_text):
+    send_text(sender_id, message_text)
+  else:
+    send_api(sender_id, result)    
+
 def send_text(sender_id, message_text):
   send_action(sender_id, "typing_on")  
-  time.sleep(len(message_text)/30)
+  time.sleep(len(message_text)/15)
   data = json.dumps({
     "recipient": {"id": sender_id},
     "message": {"text": message_text},
   })
   send_message(data)
-  
+
+def send_api(sender_id, result):
+  data = json.dumps({
+    "recipient": {"id": sender_id},
+    "message": {"text": result},
+  })
+  send_message(data)
 def send_action(sender_id, action):
   data = json.dumps({
     "recipient": {"id": sender_id},
