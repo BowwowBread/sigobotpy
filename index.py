@@ -66,7 +66,7 @@ def payload_match(sender_id, payload):
 #   send_message(data)
   
 def get_userProfile(sender_id):
-  r = request.post("https://graph.facebook.com/v2.6/<PSID>?fields=first_name,last_name",
+  r = requests.get("https://graph.facebook.com/v2.6/<PSID>?fields=first_name,last_name",
     params={"access_token": access_token})
   if(r.status_code == 200):
     print(r.text)
