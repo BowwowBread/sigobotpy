@@ -21,6 +21,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
 }' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD"
 #button
 
+
 curl -X POST -H "Content-Type: application/json" -d'{
   "setting_type" : "call_to_actions",
   "thread_state" : "existing_thread",
@@ -34,6 +35,11 @@ curl -X POST -H "Content-Type: application/json" -d'{
       "type":"postback",
       "title":"일정",
       "payload":"SCHEDULE"
+    },
+    {
+      "type":"postback",
+      "title":"끝말잇기",
+      "payload":"ENDTOEND"
     },
   ]
 }' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD"
