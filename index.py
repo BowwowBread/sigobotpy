@@ -122,8 +122,11 @@ def send_message(data):
   else:
     print(r.text)
 
+
+print("test")
 if __name__ == '__main__':
   app.run()
 
+print("test")
 scheduler.sched.start()
 print("scheduler started")
