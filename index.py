@@ -4,15 +4,24 @@ import json
 import requests
 import time
 import bot
-import time
 import atexit
 
-from apscheduler.schedulers.background import BackgroundScheduler
-from apscheduler.triggers.interval import IntervalTrigger
-
+from apscheduler.scheduler import Scheduler
 import pytz
 
 app = Flask(__name__)
+
+cron = Scheduler(daemon=True)
+# Explicitly kick off the background thread
+cron.start()
+
+@cron.interval_schedule(hours=1)
+def job_function():
+    print("test")
+
+
+# Shutdown your cron thread if the web process is stopped
+atexit.register(lambda: cron.shutdown(wait=False))
 
 access_token = 'EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD'
 @app.route('/', methods=['GET'])
@@ -127,21 +136,7 @@ def send_message(data):
   else:
     print(r.text)
 
-
-
-def print_date_time():
-    print(time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
-
 if __name__ == '__main__':
-  scheduler = BackgroundScheduler()
-  scheduler.add_job(
-      func=print_date_time,
-      trigger=IntervalTrigger(seconds=5),
-      id='printing_job',
-      name='Print date and time every five seconds',
-      replace_existing=True)
-  scheduler.start()
-
   app.run()
 
 
