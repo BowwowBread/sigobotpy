@@ -124,14 +124,14 @@ def send_message(data):
   else:
     print(r.text)
 
-sched = BlockingScheduler()
-timezone = pytz.timezone('Asia/Seoul')
+# sched = BlockingScheduler()
+# timezone = pytz.timezone('Asia/Seoul')
 
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute=41)
-def main():
-  print("hi")
+# @sched.scheduled_job('cron', day_of_week='mon-fri', minute=41)
+# def main():
+#   print("hi")
 
-sched.start()
+# sched.start()
 if __name__ == '__main__':
   app.run()
 
