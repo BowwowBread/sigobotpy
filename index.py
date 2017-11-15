@@ -1,6 +1,6 @@
 from flask import Flask, request
 from difflib import SequenceMatcher
-from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.schedulers.background import BackgroundScheduler
 import json
 import requests
 import time
@@ -14,12 +14,9 @@ app = Flask(__name__)
 def some_job():
     print("Decorated job")
 
-scheduler = BlockingScheduler(daemon = True)
-scheduler.add_job(some_job, 'interval', seconds=5)
+scheduler = BackgroundScheduler(daemon = True)
+scheduler.add_job(some_job, 'interval', seconds=10)
 scheduler.start()
-
-# Shutdown your cron thread if the web process is stopped
-atexit.register(lambda: cron.shutdown(wait=False))
 
 access_token = 'EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD'
 @app.route('/', methods=['GET'])
