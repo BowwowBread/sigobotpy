@@ -1,12 +1,9 @@
 from flask import Flask, request
 from difflib import SequenceMatcher
-from apscheduler.schedulers.background import BackgroundScheduler
 import json
 import requests
 import time
 import bot
-import atexit
-import pytz
 
 app = Flask(__name__)
 
