@@ -4,7 +4,6 @@ import json
 import requests
 import time
 import bot
-import scheduler
 
 
 app = Flask(__name__)
@@ -126,5 +125,3 @@ if __name__ == '__main__':
 
 
 ## Scheduler 
-
-scheduler.sched.start()
