@@ -10,14 +10,6 @@ import pytz
 
 app = Flask(__name__)
 
-
-def some_job():
-    print("Decorated job")
-
-scheduler = BackgroundScheduler(daemon = True)
-scheduler.add_job(some_job, 'interval', seconds=10)
-scheduler.start()
-
 access_token = 'EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD'
 @app.route('/', methods=['GET'])
 def handle_main():
