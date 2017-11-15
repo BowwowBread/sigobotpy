@@ -1,24 +1,22 @@
 from flask import Flask, request
 from difflib import SequenceMatcher
+from apscheduler.schedulers.blocking import BlockingScheduler
 import json
 import requests
 import time
 import bot
 import atexit
-
-from apscheduler.scheduler import Scheduler
 import pytz
 
 app = Flask(__name__)
 
-cron = Scheduler(daemon=True)
-# Explicitly kick off the background thread
-cron.start()
 
-@cron.interval_schedule(hours=1)
-def job_function():
-    print("test")
+def some_job():
+    print "Decorated job"
 
+scheduler = BlockingScheduler()
+scheduler.add_job(some_job, 'interval', seconds=3)
+scheduler.start()
 
 # Shutdown your cron thread if the web process is stopped
 atexit.register(lambda: cron.shutdown(wait=False))
