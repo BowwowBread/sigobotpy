@@ -134,15 +134,13 @@ def print_date_time():
 
 if __name__ == '__main__':
   scheduler = BackgroundScheduler()
-  scheduler.start()
   scheduler.add_job(
       func=print_date_time,
       trigger=IntervalTrigger(seconds=5),
       id='printing_job',
       name='Print date and time every five seconds',
       replace_existing=True)
-  # Shut down the scheduler when exiting the app
-  atexit.register(lambda: scheduler.shutdown())
+  scheduler.start()
 
   app.run()
 
