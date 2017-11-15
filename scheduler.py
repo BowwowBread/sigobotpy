@@ -20,7 +20,7 @@ def postCafeteria():
 if __name__ == '__main__':
     from apscheduler.schedulers.blocking import BlockingScheduler
     sched = BlockingScheduler()
-    sched.add_job(postCafeteria, 'cron', id='run_every_10_hour', day_of_week='0-4', hour=16,)
+    sched.add_job(postCafeteria, 'cron', id='run_every_10_hour', day_of_week='0-4', hour=10,)
 sched.start()
 
 
