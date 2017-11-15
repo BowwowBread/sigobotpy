@@ -4,8 +4,10 @@ import json
 import requests
 import time
 import bot
-import scheduler
+# import scheduler
+from apscheduler.schedulers.blocking import BlockingScheduler
 
+import pytz
 
 app = Flask(__name__)
 
@@ -122,9 +124,15 @@ def send_message(data):
   else:
     print(r.text)
 
+sched = BlockingScheduler()
+timezone = pytz.timezone('Asia/Seoul')
 
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute=41)
+def main():
+  print("hi")
+
+sched.start()
 if __name__ == '__main__':
-  app.run(debug=True, use_reloader=False)
-  print("asd")
+  app.run()
 
 
