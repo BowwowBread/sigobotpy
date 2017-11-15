@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 
 def some_job():
-    print "Decorated job"
+    print("Decorated job")
 
 scheduler = BlockingScheduler()
 scheduler.add_job(some_job, 'interval', seconds=3)
