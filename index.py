@@ -48,18 +48,16 @@ def payload_match(sender_id, payload):
     send_text(sender_id, "안녕 나는 시고야")
     send_text(sender_id, "메뉴에서 버튼을 누르면 도움말을 볼 수 있어")
   elif(payload == "CAFETERIA"):
-    send_text(sender_id, "급식 사용법을 알려줄게")
-    send_text(sender_id, "먼저 **오늘 급식**과 **내일 급식**을 알 수 있어")
-    send_text(sender_id, "예를들면 **급식, 점심, 밥, 내일급식** 이렇게 말이야")
-    send_text(sender_id, "그리고 **이번 주 급식**과 **다음 주 급식**을 알 수 있고,")
-    send_text(sender_id, "**월요일 급식, 목요일 급식, 8일 급식** 이런식으로도 알 수 있어")
+    send_text(sender_id, "급식 사용법")
+    send_text(sender_id, "먼저 오늘 급식과 내일 급식을 알 수 있어")
+    send_text(sender_id, "예를들면 급식, 점심, 밥, 내일급식 이렇게 말이야")
+    send_text(sender_id, "그리고 이번 주 급식과 다음 주 급식을 알 수 있고,")
+    send_text(sender_id, "월요일 급식, 목요일 급식, 8일 급식 이런식으로도 알 수 있어")
   elif(payload == "SCHEDULE"):
     send_text(sender_id, "일정 사용법을 알려줄게")
-    send_text(sender_id, "먼저 **이번 달 일정**과 **다음 달 일정**을 알 수 있어")
-    send_text(sender_id, "예를들면 **일정, 스케줄, 이번달 일정, 다음달 일정** 이렇게 말이야")
-    send_text(sender_id, "그리고 **12월 일정** 이런식으로 직접 날짜를 입력해도 돼")
-  elif(payload == "ENDTOEND"):
-    print(payload)
+    send_text(sender_id, "먼저 이번 달 일정과 다음 달 일정을 알 수 있어")
+    send_text(sender_id, "예를들면 일정, 스케줄, 이번달 일정, 다음달 일정 이렇게 말이야")
+    send_text(sender_id, "그리고 12월 일정 이런식으로 직접 날짜를 입력해도 돼")
   else:
     print("payload error")
 
@@ -81,6 +79,7 @@ def send_buttton(sender_id, attachment):
 #     print(r.text)
 
 def text_match(sender_id, message_text):
+  send_action(sender_id, "typing_on")                          
   result = bot.messageMatching(message_text)
   if(result == message_text):
     send_text(sender_id, message_text)
@@ -97,7 +96,6 @@ def send_text(sender_id, message_text):
   send_message(data)
 
 def send_api(sender_id, result):
-  send_action(sender_id, "typing_on")                        
   data = json.dumps({
     "recipient": {"id": sender_id},
     "message": {"text": result},
