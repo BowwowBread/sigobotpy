@@ -9,10 +9,10 @@ def testing2():
 def postCafeteria():
   result = cafeteria.day(cafeteria.currentDay)
   print(result)
-  r = requests.post("https://graph.facebook.com/v2.8/1529061383780127/feed",
-    params={"access_token": "EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD"},
-    data=result,
-    headers={'Content-type': 'application/json'})
+  # r = requests.post("https://graph.facebook.com/v2.8/1529061383780127/feed",
+  #   params={"access_token": "EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD"},
+  #   data=result,
+  #   headers={'Content-type': 'application/json'})
   
 if __name__ == '__main__':
     from apscheduler.schedulers.blocking import BlockingScheduler
