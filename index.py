@@ -14,8 +14,8 @@ app = Flask(__name__)
 def some_job():
     print("Decorated job")
 
-scheduler = BlockingScheduler()
-scheduler.add_job(some_job, 'interval', seconds=3)
+scheduler = BlockingScheduler(daemon = True)
+scheduler.add_job(some_job, 'interval', seconds=5)
 scheduler.start()
 
 # Shutdown your cron thread if the web process is stopped
