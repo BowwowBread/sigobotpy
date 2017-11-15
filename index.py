@@ -123,11 +123,8 @@ def send_message(data):
     print(r.text)
 
 
-print("test")
-scheduler.sched.start()
 if __name__ == '__main__':
-  app.run()
-  print("app")
+  app.run(debug=True, use_reloader=False)
+  print("asd")
 
-print("err")
 

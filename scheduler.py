@@ -1,11 +1,13 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-sched = BlockingScheduler()
-print("scheduler started")
-@sched.scheduled_job('interval', minutes=1)
-def timed_job():
-    print('This job is run every three minutes.')
+import pytz
 
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour=17)
-def scheduled_job():
-    print('This job is run every weekday at 5pm.')
+sched = BlockingScheduler()
+timezone = pytz.timezone('Asia/Seoul')
+
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute=41)
+def main():
+  print("hi")
+
+sched.start()
+print("aa")
