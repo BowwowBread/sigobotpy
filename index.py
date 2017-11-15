@@ -4,8 +4,11 @@ import json
 import requests
 import time
 import bot
-# import scheduler
-from apscheduler.schedulers.blocking import BlockingScheduler
+import time
+import atexit
+
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.interval import IntervalTrigger
 
 import pytz
 
@@ -124,15 +127,23 @@ def send_message(data):
   else:
     print(r.text)
 
-# sched = BlockingScheduler()
-# timezone = pytz.timezone('Asia/Seoul')
 
-# @sched.scheduled_job('cron', day_of_week='mon-fri', minute=41)
-# def main():
-#   print("hi")
 
-# sched.start()
+def print_date_time():
+    print(time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
+
 if __name__ == '__main__':
+  scheduler = BackgroundScheduler()
+  scheduler.start()
+  scheduler.add_job(
+      func=print_date_time,
+      trigger=IntervalTrigger(seconds=5),
+      id='printing_job',
+      name='Print date and time every five seconds',
+      replace_existing=True)
+  # Shut down the scheduler when exiting the app
+  atexit.register(lambda: scheduler.shutdown())
+
   app.run()
 
 
