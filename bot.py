@@ -63,7 +63,3 @@ def textMatching(message, matchText, ratio):
     if(SequenceMatcher(None, text, message).ratio() > ratio):
       return True
 
-
-### test
-
-print(messageMatching("다음달일정"))
