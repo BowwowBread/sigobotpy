@@ -29,11 +29,11 @@ def handle_messages():
   try:
     data = request.get_json()
     if data["object"] == "page":
-        print(data)
-        print("data")
         for entry in data["entry"]:
             if("messaging" in entry):
               for messaging_event in entry["messaging"]:
+                  print(message_text["sender"]["id"])
+                  print(recipient_id = messaging_event["recipient"]["id"])
                   if messaging_event.get("message"): 
                       sender_id = messaging_event["sender"]["id"]   
                       message_text = messaging_event["message"]["text"]  
@@ -119,7 +119,6 @@ def send_message(data):
     data=data,
     headers={'Content-type': 'application/json'})
   print(r.text)
-  print("res")
   
 if __name__ == '__main__':
   app.run()
