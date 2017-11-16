@@ -28,9 +28,9 @@ def handle_verification():
 def handle_messages():
   data = request.get_json()
   if data["object"] == "page":
-      print("~~data~~" + data["entry"])      
+      print(data["entry"])      
       for entry in data["entry"]:
-          print("~~entry~~" + entry)
+          print(entry)
           for messaging_event in entry["messaging"]:
               if messaging_event.get("message"): 
                   sender_id = messaging_event["sender"]["id"]   
@@ -110,7 +110,7 @@ def send_message(data):
     params={"access_token": access_token},
     data=data,
     headers={'Content-type': 'application/json'})
-  
+  print(r.text)
   
 if __name__ == '__main__':
   app.run()
