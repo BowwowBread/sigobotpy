@@ -28,19 +28,19 @@ def handle_verification():
 def handle_messages():
   data = request.get_json()
   if data["object"] == "page":
-      print(data["entry"])      
       for entry in data["entry"]:
           print(entry)
-          for messaging_event in entry["messaging"]:
-              if messaging_event.get("message"): 
-                  sender_id = messaging_event["sender"]["id"]   
-                  message_text = messaging_event["message"]["text"]  
-                  text_match(sender_id, message_text)
-                  #text_match
-              if messaging_event.get("postback"):
-                  sender_id = messaging_event["sender"]["id"]   
-                  payload = messaging_event["postback"]["payload"]
-                  payload_match(sender_id, payload)
+          if("messaging" in entry):
+            for messaging_event in entry["messaging"]:
+                if messaging_event.get("message"): 
+                    sender_id = messaging_event["sender"]["id"]   
+                    message_text = messaging_event["message"]["text"]  
+                    text_match(sender_id, message_text)
+                    #text_match
+                if messaging_event.get("postback"):
+                    sender_id = messaging_event["sender"]["id"]   
+                    payload = messaging_event["postback"]["payload"]
+                    payload_match(sender_id, payload)
   return "ok"
 
 
