@@ -58,8 +58,6 @@ def payload_match(sender_id, payload):
     send_text(sender_id, "먼저 이번 달 일정과 다음 달 일정을 알 수 있어")
     send_text(sender_id, "예를들면 일정, 스케줄, 이번달 일정, 다음달 일정 이렇게 말이야")
     send_text(sender_id, "그리고 12월 일정 이런식으로 직접 날짜를 입력해도 돼")
-  elif(payload == "ENDTOEND"):
-    print(payload)
   else:
     print("payload error")
 
@@ -71,14 +69,7 @@ def send_buttton(sender_id, attachment):
       "attachment": attachment
     }
   })
-  print(data)
   send_message(data)
-  
-# def get_userProfile(sender_id):
-#   r = requests.get("https://graph.facebook.com/v2.6/"+sender_id+"?fields=first_name,last_name",
-#     params={"access_token": access_token})
-#   if(r.status_code == 200):
-#     print(r.text)
 
 def text_match(sender_id, message_text):
   result = bot.messageMatching(message_text)
