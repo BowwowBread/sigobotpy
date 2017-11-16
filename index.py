@@ -94,6 +94,7 @@ def send_text(sender_id, message_text):
     "message": {"text": message_text},
   })
   send_message(data)
+  send_action(sender_id, "typing_off")                          
 
 def send_api(sender_id, result):
   send_action(sender_id, "typing_on")                        
@@ -102,6 +103,7 @@ def send_api(sender_id, result):
     "message": {"text": result},
   })
   send_message(data)
+  send_action(sender_id, "typing_off")                          
 
 def send_action(sender_id, action):
   data = json.dumps({
@@ -115,11 +117,8 @@ def send_message(data):
     params={"access_token": access_token},
     data=data,
     headers={'Content-type': 'application/json'})
-  if(r.status_code == "200"):
-    pass
-  else:
-    print(r.text)
-
+  
+  
 if __name__ == '__main__':
   app.run()
 
