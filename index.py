@@ -49,7 +49,7 @@ def handle_messages():
                   if messaging_event.get("optin"):
                       pass
     return "ok", 200
-  expect:
+  except:
     pass
 
 def payload_match(sender_id, payload):
