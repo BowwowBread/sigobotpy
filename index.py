@@ -28,8 +28,8 @@ def handle_verification():
 def handle_messages():
   data = request.get_json()
   if data["object"] == "page":
+      print(data)
       for entry in data["entry"]:
-          print(entry)
           if("messaging" in entry):
             for messaging_event in entry["messaging"]:
                 if messaging_event.get("message"): 
