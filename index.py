@@ -33,7 +33,7 @@ def handle_messages():
             if("messaging" in entry):
               for messaging_event in entry["messaging"]:
                   print(message_text["sender"]["id"])
-                  print(recipient_id = messaging_event["recipient"]["id"])
+                  print(messaging_event["recipient"]["id"])
                   if messaging_event.get("message"): 
                       sender_id = messaging_event["sender"]["id"]   
                       message_text = messaging_event["message"]["text"]  
