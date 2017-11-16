@@ -27,7 +27,7 @@ def handle_verification():
 @app.route('/webhook', methods=['POST'])
 def handle_messages():
   try:
-    data = jsonify(json.loads(request.get_json))
+    data = request.get_json()
     if data["object"] == "page":
         for entry in data["entry"]:
             if("messaging" in entry):
@@ -116,7 +116,6 @@ def send_message(data):
     params={"access_token": access_token},
     data=data,
     headers={'Content-type': 'application/json'})
-  print(r.text)
   
 if __name__ == '__main__':
   app.run()
