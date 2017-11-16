@@ -27,7 +27,7 @@ def handle_verification():
 @app.route('/webhook', methods=['POST'])
 def handle_messages():
   try:
-    data = request.get_json(force = True)
+    data = jsonify(json.loads(request.get_json))
     if data["object"] == "page":
         for entry in data["entry"]:
             if("messaging" in entry):
