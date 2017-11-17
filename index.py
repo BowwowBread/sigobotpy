@@ -34,10 +34,12 @@ def handle_messages():
             if("messaging" in entry):
               for messaging_event in entry["messaging"]:
                   if messaging_event.get("message"): 
-                      sender_id = messaging_event["sender"]["id"]   
-                      message_text = messaging_event["message"]["text"]  
-                      text_match(sender_id, message_text)
-                      #text_match
+                      if "is_echo" in messaging_event["message"]:
+                        pass
+                      else:
+                        sender_id = messaging_event["sender"]["id"]   
+                        message_text = messaging_event["message"]["text"]  
+                        text_match(sender_id, message_text)
                   if messaging_event.get("postback"):
                       sender_id = messaging_event["sender"]["id"]   
                       payload = messaging_event["postback"]["payload"]
