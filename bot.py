@@ -1,10 +1,21 @@
 
 from difflib import SequenceMatcher
+import requests
 import re
 import cafeteria
 import schedule
+import json
 
 
+def danbeeAi(message):
+  r = requests.post("https://danbee.Ai/chatflow/engine.do",
+    data = json.dumps({
+      "chatbot_id" : "bc17a2c2-85b4-4d71-9c0f-ef77d71a3de9",
+      "input_sentence": "hi"
+    }),
+    headers={'Content-type': 'application/json;charset=UTF-8'})
+  data = r.json()
+  return data['responseSet']['result']['result'][0]['message']
 
 def messageMatching(message):
   message = message.replace('\n', '').replace(' ', '')
@@ -13,7 +24,7 @@ def messageMatching(message):
   elif(textMatching(message, ["일정", "스케줄"], 0.3)):
     return scheduleMatching(message)
   else:
-    return message
+    return danbeeAi(message)
 
 
 def scheduleMatching(message):
