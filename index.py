@@ -28,6 +28,7 @@ def handle_verification():
 def handle_messages():
   try:
     data = request.get_json()
+    print(data)
     if data["object"] == "page":
         for entry in data["entry"]:
             if("messaging" in entry):
