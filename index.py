@@ -79,6 +79,7 @@ def send_buttton(sender_id, attachment):
   send_message(data)
 
 def text_match(sender_id, message_text):
+  send_action(sender_id, "typing_on")                          
   result = bot.messageMatching(message_text)
   if(result == message_text):
     send_text(sender_id, message_text)
