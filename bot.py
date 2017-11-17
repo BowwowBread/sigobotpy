@@ -11,7 +11,7 @@ def danbeeAi(message):
   r = requests.post("https://danbee.Ai/chatflow/engine.do",
     data = json.dumps({
       "chatbot_id" : "bc17a2c2-85b4-4d71-9c0f-ef77d71a3de9",
-      "input_sentence": "hi"
+      "input_sentence": message
     }),
     headers={'Content-type': 'application/json;charset=UTF-8'})
   data = r.json()
