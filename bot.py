@@ -1,4 +1,3 @@
-
 from difflib import SequenceMatcher
 import requests
 import re
@@ -6,6 +5,30 @@ import cafeteria
 import schedule
 import json
 
+# def danbeeAi(message):
+#   r = requests.post("https://danbee.Ai/chatflow/engine.do",
+#     data = json.dumps({
+#       "chatbot_id" : "bc17a2c2-85b4-4d71-9c0f-ef77d71a3de9",
+#       "input_sentence": message
+#     }),
+#     headers={'Content-type': 'application/json;charset=UTF-8'})
+#   data = r.json()
+#   botResult = {
+#     "sentence" : data['responseSet']['result']['input_sentence'],
+#     "intent": data['responseSet']['result']['ref_intent_id'],
+#     "message" : data['responseSet']['result']['result'][0]['message'],
+#     "param": data['responseSet']['result']['parameters']
+#   }
+#   return botResult
+  
+# def messageMatching(message):
+#   botResult = danbeeAi(message)
+#   if(botResult['intent'] == "급식"):
+#     if(botResult['param']['급식'] == "급식"):
+      
+
+
+# Add danbeeAi
 
 def danbeeAi(message):
   r = requests.post("https://danbee.Ai/chatflow/engine.do",

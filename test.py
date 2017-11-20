@@ -1,31 +1,55 @@
 import requests
 import cafeteria
 import json
+import schedule
 
 def danbeeAi(message):
   r = requests.post("https://danbee.Ai/chatflow/engine.do",
     data = json.dumps({
       "chatbot_id" : "bc17a2c2-85b4-4d71-9c0f-ef77d71a3de9",
-      "input_sentence": "hi"
+      "input_sentence": message
     }),
     headers={'Content-type': 'application/json;charset=UTF-8'})
   data = r.json()
-  return data['responseSet']['result']['result'][0]['message']
+  botResult = {
+    "sentence" : data['responseSet']['result']['input_sentence'],
+    "intent": data['responseSet']['result']['ref_intent_id'],
+    "message" : data['responseSet']['result']['result'][0]['message'],
+    "param": data['responseSet']['result']['parameters']
+  }
+  return botResult
 
 
-def postCafeteria():
-  result = cafeteria.day(cafeteria.currentDay)
-
-  r = requests.post("https://graph.facebook.com/v2.11/325920784549338/feed",
-    params={"access_token": "EAAYi1m8AgjUBAP7O4UlHQ0oLo4ySlbJadak2lZCw3Bx5vmg2q6JAX4RFWE3FrguEQE3mMg9plZBjZBQ7PDnST4dnGFoS4UuonM3dZCrwblBlRfjTQHlOwLjhhFZAWYREuSGiACV9oSJkyIYzK7oM3uyyZBB1QGtV7gJRwjZA9XD3gZDZD"},
-    data={
-      "message" : result,
-    }
-  )
-  if(r.status_code == "200"):
-    print("success")
-    print(r.text)  
+botResult = danbeeAi("12월 일정정정정")
+print(botResult)
+def match(botResult):
+  if(botResult['intent'] == "급식"):
+    if(botResult['param']['급식'] == "급식"):
+      if(botResult['param']['일'] != "Null"):
+        print(cafeteria.day(int(cafeteria.currentDay) + int(botResult['param']['일'])))
+      elif(botResult['param']['날짜'] != "Null"):
+        if(botResult['param']['날짜'] == "이번주"):
+          print(cafeteria.week(1))
+        elif(botResult['param']['날짜'] == "다음주"):
+          print(cafeteria.week(0))
+        elif(botResult['param']['날짜'] == "월"):
+          print(cafeteria.dayofweek(1))
+        elif(botResult['param']['날짜'] == "화"):
+          print(cafeteria.dayofweek(2))        
+        elif(botResult['param']['날짜'] == "수"):
+          print(cafeteria.dayofweek(3))        
+        elif(botResult['param']['날짜'] == "목"):
+          print(cafeteria.dayofweek(4))        
+        elif(botResult['param']['날짜'] == "금"):
+          print(cafeteria.dayofweek(5))        
+      else:
+        print(cafeteria.day(int(cafeteria.currentDay)))
+  elif(botResult['intent'] == "일정"):
+    if(botResult['param']['단어'] == "일정"):
+      print(schedule.monthSchedule(int(schedule.currentMonth) + int(botResult['param']['날짜'])))
   else:
-    print(r.text)
+    print(botResult['message'])
 
-postCafeteria()
+match(botResult)
+        
+      
