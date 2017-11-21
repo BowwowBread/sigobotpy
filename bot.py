@@ -17,9 +17,9 @@ def danbeeAi(message):
 
 def messageMatching(message):
   message = message.replace('\n', '').replace(' ', '')
-  if(textMatching(message, ["급식", "점심", "밥"], 0.3)):
+  if(textMatching(message, ["급식", "점심", "밥"], 0.5)):
     return cafeteriaMatching(message)
-  elif(textMatching(message, ["일정", "스케줄"], 0.3)):
+  elif(textMatching(message, ["일정", "스케줄"], 0.5)):
     return scheduleMatching(message)
   else:
     return danbeeAi(message)
