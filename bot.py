@@ -22,7 +22,7 @@ def messageMatching(message):
   elif(textMatching(message, ["일정", "스케줄"], 0.5)):
     return scheduleMatching(message)
   else:
-    return danbeeAi(message)
+    return message
 
 
 def scheduleMatching(message):
