@@ -18,11 +18,11 @@ def postCafeteria():
     print(r.text)
 
 def clockReady():
-  print("clock process start")
+  print("clock process ready")
 
 sched = BlockingScheduler()
-sched.add_job(clockReady, 'cron', id='run_every_9_hour', day_of_week='0-4', hour=9,)
-sched.add_job(postCafeteria, 'cron', id='run_every_10_hour', day_of_week='0-4', hour=10,)
+sched.add_job(clockReady, 'interval', minute=10,)
+sched.add_job(postCafeteria, 'cron', day_of_week='mon-fri', hour=11, minute=10)
 sched.start()
 
 
