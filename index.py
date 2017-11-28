@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*- 
+
 from flask import Flask, request
 from difflib import SequenceMatcher
 from apscheduler.schedulers.background import BackgroundScheduler
