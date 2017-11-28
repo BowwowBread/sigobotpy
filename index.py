@@ -4,7 +4,6 @@ from flask import Flask, request
 from difflib import SequenceMatcher
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
-from flask_sslify import SSLify
 import json
 import requests
 import time
@@ -13,7 +12,6 @@ import bot
 import cafeteria
 
 app = Flask(__name__)
-sslify = SSLify(app, subdomains=True)
 access_token = 'EAAYi1m8AgjUBAP7O4UlHQ0oLo4ySlbJadak2lZCw3Bx5vmg2q6JAX4RFWE3FrguEQE3mMg9plZBjZBQ7PDnST4dnGFoS4UuonM3dZCrwblBlRfjTQHlOwLjhhFZAWYREuSGiACV9oSJkyIYzK7oM3uyyZBB1QGtV7gJRwjZA9XD3gZDZD'
 @app.route('/', methods=['GET'])
 def handle_main():
