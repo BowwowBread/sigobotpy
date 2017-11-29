@@ -10,12 +10,16 @@ import time
 import atexit
 import bot
 import cafeteria
+import datetime
+
+now = datetime.datetime.now()
 
 app = Flask(__name__)
 access_token = 'EAAYi1m8AgjUBAP7O4UlHQ0oLo4ySlbJadak2lZCw3Bx5vmg2q6JAX4RFWE3FrguEQE3mMg9plZBjZBQ7PDnST4dnGFoS4UuonM3dZCrwblBlRfjTQHlOwLjhhFZAWYREuSGiACV9oSJkyIYzK7oM3uyyZBB1QGtV7gJRwjZA9XD3gZDZD'
 @app.route('/', methods=['GET'])
 def handle_main():
   print('main')
+  print(now)
   return("main")
 
 

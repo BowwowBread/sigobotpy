@@ -17,13 +17,12 @@ def postCafeteria():
   else:
     print(r.text)
 
-def clockReady():
-  print("clock process ready")
 def test():
   print("test")
 sched = BlockingScheduler()
 sched.add_job(test, "interval", seconds=5)
-sched.add_job(postCafeteria, 'interval', hours=1)
+sched.add_job(postCafeteria, 'cron', hour=10)
+
 sched.start()
 
 
