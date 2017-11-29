@@ -141,13 +141,13 @@ def postCafeteria():
     print(r.text)  
   else:
     print(r.text)
-
+def test():
+  print("test")
 scheduler = BackgroundScheduler()
 scheduler.start()
 scheduler.add_job(postCafeteria, 'cron', hour=10)
 
 atexit.register(lambda: scheduler.shutdown())
-
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=80, debug = False)
