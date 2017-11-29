@@ -28,18 +28,21 @@ def messageMatching(message):
 
 
 def scheduleMatching(message):
-  if(textMatching(message, ["다음달, 담달"], 0.3)):
-    return schedule.monthSchedule(int(schedule.currentMonth) + 1)
-  if(textMatching(message, ["이번달", "요번달"], 0.3)):
-    return schedule.monthSchedule(schedule.currentMonth)
-  elif(textMatching(message, ["달", "월"], 0.2)):
-    month = re.sub('[^0-9]', '', message)
-    if(int(month) >= 1 and int(month) <= 12):
-      return schedule.monthSchedule(int(month))
+  try:
+    if(textMatching(message, ["다음달, 담달"], 0.3)):
+      return schedule.monthSchedule(int(schedule.currentMonth) + 1)
+    if(textMatching(message, ["이번달", "요번달"], 0.3)):
+      return schedule.monthSchedule(schedule.currentMonth)
+    elif(textMatching(message, ["달", "월"], 0.2)):
+      month = re.sub('[^0-9]', '', message)
+      if(int(month) >= 1 and int(month) <= 12):
+        return schedule.monthSchedule(int(month))
+      else:
+        return "정확한 날짜를 입력해줘요"
     else:
-      return "정확한 날짜를 입력해줘요"
-  else:
-    return schedule.monthSchedule(schedule.currentMonth)
+      return schedule.monthSchedule(schedule.currentMonth)
+  except:
+    return "몰라"
 
 def cafeteriaMatching(message):
   if(textMatching(message, ["내일", "낼"], 0.4)):

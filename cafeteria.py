@@ -10,6 +10,7 @@ now = datetime.datetime.now()
 currentTime = now.strftime('%Y%m')
 currentMonth = now.strftime('%m')
 currentDay = now.strftime("%d")
+print(int(currentMonth) + 1)
 if(int(currentDay) < 10) :
   currentDay = str(currentDay).replace('0', '')
 searchurl = "http://stu.sen.go.kr/sts_sci_md00_001.do?schulCode=B100000599&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=2&schYm={{date}}"
@@ -97,6 +98,6 @@ def dayofweek(day):
                     result += re.sub('[0-9a-zA-Z(\.)<>]', '', daylist[day]).replace('/', '\n').replace('[중식]', dayday)    
                     return result
                 elif dayday != ' ' :
-                    return str(dayday).replace('/', '') +"일 " + weekdic[day] + "요일은 급식을 먹는날이 아니에요"
+                    return weekdic[day] + "요일은 급식을 먹는날이 아니에요"
                 else:
-                    return str(dayday).replace('/', '') +"일 " + weekdic[day] + "요일은 급식을 먹는날이 아니에요"
+                    return weekdic[day] + "요일은 급식을 먹는날이 아니에요"
