@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*- 
-
 import requests
 import cafeteria
 from apscheduler.schedulers.blocking import BlockingScheduler
@@ -24,6 +22,7 @@ def clockReady():
 def test():
   print("test")
 sched = BlockingScheduler()
+sched.add_job(test, "interval", seconds=5)
 sched.add_job(postCafeteria, 'interval', hours=1)
 sched.start()
 
