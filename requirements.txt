@@ -1,7 +1,4 @@
 alabaster==0.7.10
-anaconda-client==1.6.5
-anaconda-navigator==1.6.9
-anaconda-project==0.8.0
 APScheduler==3.4.0
 asn1crypto==0.22.0
 astroid==1.5.3
@@ -45,7 +42,6 @@ fastcache==1.0.2
 filelock==2.0.12
 Flask==0.12.2
 Flask-Cors==3.0.3
-Flask-SSLify==0.1.5
 gevent==1.2.2
 glob2==0.5
 greenlet==0.4.12
