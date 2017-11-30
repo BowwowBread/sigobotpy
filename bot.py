@@ -18,7 +18,6 @@ def danbeeAi(message):
   return data['responseSet']['result']['result'][0]['message']
 
 def messageMatching(message):
-  try:
     message = message.replace('\n', '').replace(' ', '')
     if(textMatching(message, ["급식", "점심", "밥"], 0.5)):
       return cafeteriaMatching(message)
@@ -26,15 +25,13 @@ def messageMatching(message):
       return scheduleMatching(message)
     else:
       return danbeeAi(message)
-  except:
-    return "몰라"
 
 def scheduleMatching(message):
     if(textMatching(message, ["다음달, 담달"], 0.3)):
       return schedule.monthSchedule(int(schedule.currentMonth) + 1)
     if(textMatching(message, ["이번달", "요번달"], 0.3)):
       return schedule.monthSchedule(schedule.currentMonth)
-    elif(textMatching(message, ["달", "월"], 0.2)):
+    elif(textMatching(message, ["달", "월"], 0.2)): 
       month = re.sub('[^0-9]', '', message)
       if(int(month) >= 1 and int(month) <= 12):
         return schedule.monthSchedule(int(month))
@@ -44,13 +41,13 @@ def scheduleMatching(message):
       return schedule.monthSchedule(schedule.currentMonth)
 
 def cafeteriaMatching(message):
-  if(textMatching(message, ["내일", "낼"], 0.4)):
-      return cafeteria.day(int(cafeteria.currentDay) + 1)
-  elif(textMatching(message, ["이번주", "요번주"], 0.5)):
+  if(textMatching(message, ["내일", "낼"], 0.5)):
+    return cafeteria.day(int(cafeteria.currentDay) + 1)
+  elif(textMatching(message, ["이번주", "요번주"], 0.6)):
     return cafeteria.week(1)
-  elif(textMatching(message, ["다음주", "담주"], 0.5)):
+  elif(textMatching(message, ["다음주", "담주"], 0.6)):
     return cafeteria.week(0)
-  elif(textMatching(message, ["요일", "욜", "여일"], 0.2)):
+  elif(textMatching(message, ["요일", "욜", "여일"], 0.4)):
     if(textMatching(message, ["월"], 0.1)):
       return cafeteria.dayofweek(1)
     elif(textMatching(message, ["화"], 0.1)):
@@ -75,4 +72,6 @@ def textMatching(message, matchText, ratio):
   for text in matchText:
     if(SequenceMatcher(None, text, message).ratio() > ratio):
       return True
+    else:
+      return False
 
