@@ -12,7 +12,12 @@ currentYear = now.strftime('%Y')
 currentMonth = now.strftime('%m')
 currentDay = now.strftime("%d")
 weekdic = {1: '월', 2: '화', 3: '수', 4: '목', 5: '금'}
-
+def timeReset():
+  global currentTime, currentYear, currentMonth, currentDay
+  currentTime = now.strftime('%Y%m')
+  currentYear = now.strftime('%Y')
+  currentMonth = now.strftime('%m')
+  currentDay = now.strftime("%d")
 def searchCafeteria():
   global currentDay
   if(int(currentDay) < 10) :

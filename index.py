@@ -117,7 +117,8 @@ def send_api(sender_id, result):
     "message": {"text": result},
   })
   send_message(data)
-  send_action(sender_id, "typing_off")                          
+  send_action(sender_id, "typing_off")           
+  cafeteria.timeReset()               
 
 def send_action(sender_id, action):
   data = json.dumps({
