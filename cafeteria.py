@@ -8,10 +8,8 @@ import re
 
 now = datetime.datetime.now()
 currentTime = now.strftime('%Y%m')
-currentTime = "201708"
 currentYear = now.strftime('%Y')
 currentMonth = now.strftime('%m')
-currentMonth = "08"
 currentDay = now.strftime("%d")
 weekdic = {1: '월', 2: '화', 3: '수', 4: '목', 5: '금'}
 
