@@ -99,6 +99,7 @@ def text_match(sender_id, message_text):
     send_api(sender_id, result)    
 
 def send_text(sender_id, message_text):
+  print("send text")  
   send_action(sender_id, "typing_on")                        
   time.sleep(len(message_text)/15)
   data = json.dumps({
@@ -109,7 +110,8 @@ def send_text(sender_id, message_text):
   send_action(sender_id, "typing_off")                          
 
 def send_api(sender_id, result):
-  send_action(sender_id, "typing_on")                        
+  print("send api")
+  send_action(sender_id, "typing_on")                       
   data = json.dumps({
     "recipient": {"id": sender_id},
     "message": {"text": result},

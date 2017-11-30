@@ -20,7 +20,7 @@ def postCafeteria():
 def test():
   print("test")
 sched = BlockingScheduler()
-sched.add_job(test, "interval", seconds=5)
+sched.add_job(test, "interval", minutes=1)
 sched.add_job(postCafeteria, 'cron', hour=10)
 
 sched.start()
