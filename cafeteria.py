@@ -173,7 +173,6 @@ def dayofweek(day):
                       return weekdic[day] + "요일은 급식을 먹는날이 아니에요"
                 else:
                     return weekdic[day] + "요일은 급식을 먹는날이 아니에요"
-    return "몰라"
 
 def findEndDay(month):
   case31 = [1,3,5,7,8,10,12]

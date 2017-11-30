@@ -18,13 +18,16 @@ def danbeeAi(message):
   return data['responseSet']['result']['result'][0]['message']
 
 def messageMatching(message):
-    message = message.replace('\n', '').replace(' ', '')
-    if(textMatching(message, ["급식", "점심", "밥"], 0.5)):
-      return cafeteriaMatching(message)
-    elif(textMatching(message, ["일정", "스케줄"], 0.5)):
-      return scheduleMatching(message)
-    else:
-      return danbeeAi(message)
+    try:
+        message = message.replace('\n', '').replace(' ', '')
+        if(textMatching(message, ["급식", "점심", "밥"], 0.5)):
+          return cafeteriaMatching(message)
+        elif(textMatching(message, ["일정", "스케줄"], 0.5)):
+          return scheduleMatching(message)
+        else:
+          return danbeeAi(message)
+    except:
+        return "몰라"
 
 def scheduleMatching(message):
     if(textMatching(message, ["다음달, 담달"], 0.3)):
