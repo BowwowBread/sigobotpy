@@ -53,11 +53,6 @@ def handle_messages():
                       sender_id = messaging_event["sender"]["id"]   
                       payload = messaging_event["postback"]["payload"]
                       payload_match(sender_id, payload)
-                  if messaging_event.get("delivery"):
-                      pass
-
-                  if messaging_event.get("optin"):
-                      pass
                   else:
                       send_text(sender_id, "뭐")
     return "ok", 200
