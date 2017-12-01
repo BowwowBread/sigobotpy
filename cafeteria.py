@@ -22,6 +22,7 @@ def timeReset():
   currentDay = now.strftime("%d")
 def searchCafeteria():
   global currentDay
+
   searchurl = "http://stu.sen.go.kr/sts_sci_md00_001.do?schulCode=B100000599&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=2&schYm={{date}}"
   url = searchurl.replace('{{date}}', currentTime)
   try:
@@ -47,9 +48,10 @@ def day(date):
         if len(v.div.contents) != 0 :
             # 해당 날짜 찾기            
             if v.div.contents[0] == str(date):
-                # 해당 날짜 데이터 체크      
+                print(v.div.contents[0])
+                # 해당 날짜 데이터 체크                
                 if len(v.div) != 1 :
-                    result += currentMonth + '월' + str(date) + '일 급식'
+                    result += currentMonth + '월' + str(date) + '일 급식 \n'
                     result += re.sub('[0-9a-zA-Z(\.)<>]','',str(v.div)).replace('/', '\n').replace('[중식]', '')
                     return result 
                 else :
