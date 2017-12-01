@@ -11,6 +11,8 @@ currentTime = now.strftime('%Y%m')
 currentYear = now.strftime('%Y')
 currentMonth = now.strftime('%m')
 currentDay = now.strftime("%d")
+if(int(currentDay) < 10) :
+  currentDay = str(currentDay).replace('0', '')
 weekdic = {1: '월', 2: '화', 3: '수', 4: '목', 5: '금'}
 def timeReset():
   global currentTime, currentYear, currentMonth, currentDay
@@ -20,8 +22,6 @@ def timeReset():
   currentDay = now.strftime("%d")
 def searchCafeteria():
   global currentDay
-  if(int(currentDay) < 10) :
-    currentDay = str(currentDay).replace('0', '')
   searchurl = "http://stu.sen.go.kr/sts_sci_md00_001.do?schulCode=B100000599&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=2&schYm={{date}}"
   url = searchurl.replace('{{date}}', currentTime)
   try:
@@ -47,10 +47,10 @@ def day(date):
         if len(v.div.contents) != 0 :
             # 해당 날짜 찾기            
             if v.div.contents[0] == str(date):
-                # 해당 날짜 데이터 체크                
+                # 해당 날짜 데이터 체크      
                 if len(v.div) != 1 :
-                    result += currentMonth + '월' + str(date) + '일 급식 \n'
-                    result += re.sub('[0-9a-zA-Z(\.)<>]','',str(v.div)).replace('/', '\n').replace('[중식]', str(date))
+                    result += currentMonth + '월' + str(date) + '일 급식'
+                    result += re.sub('[0-9a-zA-Z(\.)<>]','',str(v.div)).replace('/', '\n').replace('[중식]', '')
                     return result 
                 else :
                     return "\n" + str(date) + "일은 급식을 먹는 날이 아니에요"
@@ -137,9 +137,6 @@ def dayofweek(day):
     global currentTime      
     global currentMonth
     global currentDay
-    print(currentTime)
-    print(currentMonth)
-    print(currentDay)
     body = searchCafeteria()  
     result = ""
     for v in body.find_all('td'):

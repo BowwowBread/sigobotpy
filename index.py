@@ -15,7 +15,7 @@ import datetime
 now = datetime.datetime.now()
 
 app = Flask(__name__)
-access_token = 'EAAYi1m8AgjUBAP7O4UlHQ0oLo4ySlbJadak2lZCw3Bx5vmg2q6JAX4RFWE3FrguEQE3mMg9plZBjZBQ7PDnST4dnGFoS4UuonM3dZCrwblBlRfjTQHlOwLjhhFZAWYREuSGiACV9oSJkyIYzK7oM3uyyZBB1QGtV7gJRwjZA9XD3gZDZD'
+access_token = 'EAAHGoGpG0ZCMBAHbsZCP5ZBw89T3c8M2zJavUx0s8ZCbksx7pO0NA6P9nQ0XlWBTZAsKK7VfMhD3kg7NSSDJkYS0ZAssJsZB26UqnlwF27HRAQmffwXy1BOVTUQ5cN4BxvL1GNnSr3AOttCmnjbSVRzSSs6iBkgIN6uFLcCgklUpgZDZD'
 @app.route('/', methods=['GET'])
 def handle_main():
   print('main')
