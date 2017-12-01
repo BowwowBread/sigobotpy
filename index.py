@@ -58,6 +58,8 @@ def handle_messages():
 
                   if messaging_event.get("optin"):
                       pass
+                  else:
+                      send_text(sender_id, "뭐")
     return "ok", 200
   except:
     pass
