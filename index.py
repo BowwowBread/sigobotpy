@@ -57,7 +57,7 @@ def handle_messages():
                       send_text(sender_id, "뭐")
     return "ok", 200
   except:
-    pass
+    return "fail", 403
 
 def payload_match(sender_id, payload):
   if(payload == "STARTED"):
