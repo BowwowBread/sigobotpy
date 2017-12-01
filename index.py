@@ -53,8 +53,6 @@ def handle_messages():
                       sender_id = messaging_event["sender"]["id"]   
                       payload = messaging_event["postback"]["payload"]
                       payload_match(sender_id, payload)
-                  else:
-                      send_text(sender_id, "뭐")
     return "ok", 200
   except:
     return "ok", 200
