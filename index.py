@@ -78,7 +78,7 @@ def payload_match(sender_id, payload):
     send_text(sender_id, "예를들면 일정, 스케줄, 이번달 일정, 다음달 일정 이렇게 말이야")
     send_text(sender_id, "그리고 12월 일정 이런식으로 직접 날짜를 입력해도 돼")
   else:
-    print("payload error")
+    send_text(sender_id, "뭐")
 
 def send_buttton(sender_id, attachment):
   send_action(sender_id, "typing_on")                        
