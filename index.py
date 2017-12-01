@@ -26,7 +26,7 @@ def handle_main():
 @app.route('/webhook', methods=['GET'])
 def handle_verification():
   print('Handling Verification.')
-  if request.args.get('hub.verify_token', '') == 'SIGO':
+  if request.args.get('hub.verify_token', '') == 'sigo':
     print('Verification successful!')
     return request.args.get('hub.challenge', '')
   else:
