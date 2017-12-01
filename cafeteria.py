@@ -20,9 +20,12 @@ def timeReset():
   currentYear = now.strftime('%Y')
   currentMonth = now.strftime('%m')
   currentDay = now.strftime("%d")
+  if(int(currentDay) < 10) :
+    currentDay = str(currentDay).replace('0', '')
 def searchCafeteria():
   global currentDay
-
+  if(int(currentDay) < 10) :
+    currentDay = str(currentDay).replace('0', '')
   searchurl = "http://stu.sen.go.kr/sts_sci_md00_001.do?schulCode=B100000599&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=2&schYm={{date}}"
   url = searchurl.replace('{{date}}', currentTime)
   try:
