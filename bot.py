@@ -45,7 +45,7 @@ def scheduleMatching(message):
 
 def cafeteriaMatching(message):
   if(textMatching(message, ["내일", "낼"], 0.5)):
-    return cafeteria.day(int(cafeteria.currentDay) + 1)
+    return cafeteria.day(int(cafeteria.currentDay) + 2)
   elif(textMatching(message, ["이번주", "요번주"], 0.6)):
     return cafeteria.week(1)
   elif(textMatching(message, ["다음주", "담주"], 0.6)):
@@ -68,7 +68,7 @@ def cafeteriaMatching(message):
     else:
       return "정확한 날짜를 입력해줘요"
   else:
-    return cafeteria.day(cafeteria.currentDay)
+    return cafeteria.day(int(cafeteria.currentDay) + 1)
 
 
 def textMatching(message, matchText, ratio):
