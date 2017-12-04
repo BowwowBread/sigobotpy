@@ -121,7 +121,6 @@ def send_action(sender_id, action):
   })
   send_message(data)
 def send_message(data):
-  print("send message : " + data)
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": access_token},
     data=data,

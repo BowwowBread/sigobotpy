@@ -8,7 +8,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
       "payload":"STARTED"
     }
   ]
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAHGoGpG0ZCMBAHbsZCP5ZBw89T3c8M2zJavUx0s8ZCbksx7pO0NA6P9nQ0XlWBTZAsKK7VfMhD3kg7NSSDJkYS0ZAssJsZB26UqnlwF27HRAQmffwXy1BOVTUQ5cN4BxvL1GNnSr3AOttCmnjbSVRzSSs6iBkgIN6uFLcCgklUpgZDZD"
 
 
 #greeting
@@ -18,7 +18,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
                        "greeting":{
                                      "text":"안녕하세요 {{user_first_name}}님!"
                              }
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAHGoGpG0ZCMBAHbsZCP5ZBw89T3c8M2zJavUx0s8ZCbksx7pO0NA6P9nQ0XlWBTZAsKK7VfMhD3kg7NSSDJkYS0ZAssJsZB26UqnlwF27HRAQmffwXy1BOVTUQ5cN4BxvL1GNnSr3AOttCmnjbSVRzSSs6iBkgIN6uFLcCgklUpgZDZD"
 #button
 
 
@@ -36,10 +36,6 @@ curl -X POST -H "Content-Type: application/json" -d'{
       "title":"일정",
       "payload":"SCHEDULE"
     },
-    {
-      "type":"postback",
-      "title":"끝말잇기",
-      "payload":"ENDTOEND"
-    },
   ]
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAYi1m8AgjUBAKyZCZACLdFXld4ni5BW81BWYebWN3DZAnjObvZCpZA3EmqOC4IbPLtv71lwj5Kfd1YU4mezgDirZAcmGBmCwVxOZAqjssJzRuUNmWJ7cY3qhsZBckpZC5QlwwLRLbstIZAZBuFwCAc8SCipNcjqqRuTn8MZCsYZBYaeUpAZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAHGoGpG0ZCMBAHbsZCP5ZBw89T3c8M2zJavUx0s8ZCbksx7pO0NA6P9nQ0XlWBTZAsKK7VfMhD3kg7NSSDJkYS0ZAssJsZB26UqnlwF27HRAQmffwXy1BOVTUQ5cN4BxvL1GNnSr3AOttCmnjbSVRzSSs6iBkgIN6uFLcCgklUpgZDZD"
+
