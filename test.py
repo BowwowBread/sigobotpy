@@ -1,8 +1,4 @@
 import cafeteria
-import bot
+import datetime
 
-print("좋은 아침입니다 \n" + bot.messageMatching("급식"))
-
-import cafeteria
-
-print(cafeteria.day(cafeteria.currentDay))
+print(datetime.datetime.now())
