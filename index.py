@@ -22,7 +22,6 @@ def handle_main():
   print(now)
   return("main")
 
-
 @app.route('/webhook', methods=['GET'])
 def handle_verification():
   print('Handling Verification.')
@@ -47,6 +46,7 @@ def handle_messages():
                       else:
                         sender_id = messaging_event["sender"]["id"]   
                         message_text = messaging_event["message"]["text"]  
+                        print("receip message :" + message_text + " , time : " + str(datetime.datetime.now()))
                         text_match(sender_id, message_text)
                   if messaging_event.get("postback"):
                       sender_id = messaging_event["sender"]["id"]   
@@ -121,7 +121,7 @@ def send_action(sender_id, action):
   })
   send_message(data)
 def send_message(data):
-  
+  print("send message : " + data)
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": access_token},
     data=data,
