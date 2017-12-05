@@ -44,6 +44,7 @@ def searchCafeteria():
 def day(date):
     global currentTime      
     global currentMonth
+    print(date)
     body = searchCafeteria()
     result = ''    
     for v in body.find_all('td'):
