@@ -15,7 +15,8 @@ if(int(currentDay) < 10) :
   currentDay = str(currentDay).replace('0', '')
 weekdic = {1: '월', 2: '화', 3: '수', 4: '목', 5: '금'}
 def timeReset():
-  global currentTime, currentYear, currentMonth, currentDay
+  global now, currentTime, currentYear, currentMonth, currentDay
+  now = datetime.datetime.now()  
   currentTime = now.strftime('%Y%m')
   currentYear = now.strftime('%Y')
   currentMonth = now.strftime('%m')
