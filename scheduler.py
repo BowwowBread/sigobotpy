@@ -3,7 +3,8 @@ import cafeteria
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 def postCafeteria():
-  result = "좋은 아침입니다 \n" + cafeteria.day(int(cafeteria.currentDay) + 1)
+  cafeteria.timeReset()
+  result = "좋은 아침입니다 \n" + cafeteria.day(cafeteria.currentDay)
 
   r = requests.post("https://graph.facebook.com/v2.11/1529061383780127/feed",
     params={"access_token": "EAAHGoGpG0ZCMBAHbsZCP5ZBw89T3c8M2zJavUx0s8ZCbksx7pO0NA6P9nQ0XlWBTZAsKK7VfMhD3kg7NSSDJkYS0ZAssJsZB26UqnlwF27HRAQmffwXy1BOVTUQ5cN4BxvL1GNnSr3AOttCmnjbSVRzSSs6iBkgIN6uFLcCgklUpgZDZD"},
