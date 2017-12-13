@@ -106,13 +106,13 @@ def send_text(sender_id, message_text):
 def send_api(sender_id, result):
   print("send api")
   send_action(sender_id, "typing_on")                       
+  cafeteria.timeReset()                 
   data = json.dumps({
     "recipient": {"id": sender_id},
     "message": {"text": result},
   })
   send_message(data)
   send_action(sender_id, "typing_off")           
-  cafeteria.timeReset()               
 
 def send_action(sender_id, action):
   data = json.dumps({
