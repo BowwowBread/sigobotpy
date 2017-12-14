@@ -21,6 +21,7 @@ def messageMatching(message):
     try:
         message = message.replace('\n', '').replace(' ', '')
         if(textMatching(message, ["급식", "점심", "밥"], 0.5)):
+          cafeteria.timeReset()
           return cafeteriaMatching(message)
         elif(textMatching(message, ["일정", "스케줄"], 0.5)):
           return scheduleMatching(message)
@@ -68,6 +69,7 @@ def cafeteriaMatching(message):
     else:
       return "정확한 날짜를 입력해줘요"
   else:
+    cafeteria.timeReset()      
     return cafeteria.day(cafeteria.currentDay)
 
 
