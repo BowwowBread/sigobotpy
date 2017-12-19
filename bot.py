@@ -20,7 +20,7 @@ def danbeeAi(message):
 def messageMatching(message):
     try:
         message = message.replace('\n', '').replace(' ', '')
-        if(textMatching(message, ["급식", "점심", "밥"], 0.5)):
+        if(textMatching(message, ["급식", "점심", "밥"], 0.4)):
           cafeteria.timeReset()
           return cafeteriaMatching(message)
         elif(textMatching(message, ["일정", "스케줄"], 0.5)):
@@ -78,5 +78,6 @@ def textMatching(message, matchText, ratio):
     if(SequenceMatcher(None, text, message).ratio() > ratio):
       return True
     else:
-      return False
+      pass
+  return False
 
