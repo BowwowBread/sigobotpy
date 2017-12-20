@@ -1,7 +1,7 @@
 module.exports = {
   apps : [
     {
-      name      : "py-script",
+      name      : "sigobot",
       script    : "index.py"
     },
   ]
