@@ -11,6 +11,7 @@ import atexit
 import bot
 import cafeteria
 import datetime
+import ssl
 
 now = datetime.datetime.now()
 
@@ -127,4 +128,6 @@ def send_message(data):
     headers={'Content-type': 'application/json'})
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=80, debug = False)
+  ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS)
+  ssl_context.load_cert_chain(certfile='public.pem', keyfile='private.pem', password='secret')
+  app.run(host='0.0.0.0', port=80, debug = False, ssl_context=ssl_context)
