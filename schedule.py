@@ -45,4 +45,7 @@ def monthSchedule(month):
         # 일정 제목
         result += title.get_text() + "\n"
       result += "\n"
+    else:
+      result = str(month) + "월 일정이 없습니다" 
+      return result
   return result

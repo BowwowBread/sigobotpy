@@ -130,4 +130,5 @@ def send_message(data):
 if __name__ == '__main__':
   ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS)
   ssl_context.load_cert_chain(certfile='public.pem', keyfile='private.pem', password='secret')
+  print("test")
   app.run(host='0.0.0.0', port=80, debug = False, ssl_context=ssl_context)

@@ -21,7 +21,6 @@ def timeReset():
   currentYear = now.strftime('%Y')
   currentMonth = now.strftime('%m')
   currentDay = now.strftime("%d")
-  print(currentDay)
   if(int(currentDay) < 10) :
     currentDay = str(currentDay).replace('0', '')
 def searchCafeteria():
@@ -46,7 +45,6 @@ def searchCafeteria():
 def day(date):
     global currentTime      
     global currentMonth
-    print(date)
     body = searchCafeteria()
     result = ''    
     for v in body.find_all('td'):
