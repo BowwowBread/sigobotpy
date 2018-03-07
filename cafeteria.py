@@ -121,6 +121,7 @@ def week(state):
                         daycount = 0                    
                         for i in v.parent.find_next_sibling('tr').find_all('div') :
                             if len(i) != 1 :
+                                print(i.contents[0])
                                 result += re.sub('[0-9a-zA-Z(\.)<>]', '', str(i)).replace('/', '\n').replace('[중식]', weekdic[daycount] + " " + i.contents[0])
                             elif daycount != 6 and daycount != 0:
                                 result += "\n" + i.contents[0] + "일 " + weekdic[daycount] + "요일은 급식을 먹는날이 아니에요 \n"
