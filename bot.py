@@ -42,7 +42,7 @@ def scheduleMatching(message):
       else:
         return "정확한 날짜를 입력해줘요"
     else:
-      return schedule.monthSchedule(schedule.currentMonth)
+      return schedule.monthSchedule(schedule.currentMonth )
 
 def cafeteriaMatching(message):
   if(textMatching(message, ["내일", "낼"], 0.5)):

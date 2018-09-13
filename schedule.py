@@ -14,7 +14,7 @@ currentDay = now.strftime("%d")
 
 def searchSchedule(month):
   if(int(month) < 10) :
-    month = '0' + str(month) 
+    month = '0' + str(int(month))
 
   searchurl = "http://stu.sen.go.kr/sts_sci_sf01_001.do?schulCode=B100000599&schulCrseScCode=4&schulKndScCode=04&ay={{year}}&mm={{month}}"
   url = searchurl.replace('{{year}}', CurrentYear).replace('{{month}}', str(month))
@@ -30,6 +30,7 @@ def searchSchedule(month):
   html = f.read()
   soup = BeautifulSoup(html, "html.parser")
   body = soup.tbody
+  # print(body)
   return body
 
 
