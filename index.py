@@ -16,7 +16,7 @@ import ssl
 now = datetime.datetime.now()
 
 app = Flask(__name__)
-access_token = 'EAAHGoGpG0ZCMBAHo12tOy9AeQH0creyGZBVRz7nHf1F8JvUBVDJEiYwUOt8msaARTgZATWj9MEXzJ5ukIV2vHFAggE3OeUXKcyOmSqlPK6U0uNUI0nHri8EfcCxmZCXdalYvZA8w7V66Pm5wUnFDsCbGB5Mwt5KLKGq6fQ8UHGgZDZD'
+access_token = 'EAAHGoGpG0ZCMBADjYioTq3JKPItaiTJPetDjVqGmW7ZC7VRfPzWV9bgvRZBlgtdkQ6nmJ3xWjp7N83P3UuPGCMpccpk2ckuyZAgKncsLLMgWDRqsS5m0VJOMVBxVIvODjfWIN1LtqwpZB7RQST47mQHAFb5Sv29E018ZAYSRtacgZDZD'
 @app.route('/', methods=['GET'])
 def handle_main():
   print('main')
@@ -122,10 +122,12 @@ def send_action(sender_id, action):
   })
   send_message(data)
 def send_message(data):
-  r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-    params={"access_token": access_token},
-    data=data,
-    headers={'Content-type': 'application/json'})
+    print("send message", data)
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+      params={"access_token": access_token},
+      data=data,
+      headers={'Content-type': 'application/json'})
+    print(r)
 
 if __name__ == '__main__':
   ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS)
